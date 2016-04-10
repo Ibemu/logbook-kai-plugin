@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project logbook with libraries in sub-folder">
+    <target name="create_run_jar">
+        <!-- ビルドしたjarの出力先 -->
+        <property name="build.dir" value="dest" />
+        <!-- ビルドしたjarの名前 -->
+        <property name="dest.name" value="logger.jar" />
+
+        <!-- jarファイル作成 -->
+        <jar destfile="${build.dir}/${dest.name}">
+            <manifest>
+                <attribute name="Bundle-Name" value="Logger" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="1.0" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs" />
+            <service type="logbook.api.APIListenerSpi" provider="ibemu.logbook.plugin.logger.Kcsapi" />
+            <service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.logger.PluginConfigMenuItem" />
+            <fileset dir="./bin" />
+        </jar>
+    </target>
+</project>
