@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import logbook.internal.gui.MainController;
 import logbook.internal.gui.WindowController;
 import logbook.plugin.PluginContainer;
 import logbook.plugin.gui.MainExtMenu;
@@ -45,6 +44,6 @@ public class PluginConfigMenuItem implements MainExtMenu
 
     private static class LoggerHolder {
         /** ロガー */
-        private static final Logger LOG = LogManager.getLogger(MainController.class);
+        private static final Logger LOG = LogManager.getLogger(PluginConfigMenuItem.class);
     }
 }
