@@ -1,6 +1,8 @@
 package ibemu.logbook.plugin.quest.api;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,8 @@ public class ApiReqQuestClearitemget implements APIListenerSpi
         if(!req.getRequestBody().isPresent()) return;
         try
         {
-            Map<String, String> m = getQueryMap(IOUtils.toString(req.getRequestBody().get()));
+            Map<String, String> m = getQueryMap(URLDecoder.decode(IOUtils.toString(req.getRequestBody().get(), StandardCharsets.UTF_8),
+                                                                  StandardCharsets.UTF_8.name()));
             String idstr = m.get("api_quest_id");
             if (idstr != null) {
                 Integer id = Integer.valueOf(idstr);
