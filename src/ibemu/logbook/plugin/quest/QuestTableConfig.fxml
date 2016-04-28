@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="300.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ibemu.logbook.plugin.quest.QuestTableConfigController">
+   <children>
+      <BorderPane>
+         <center>
+            <ScrollPane BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                       <VBox>
+                           <children>
+                            <CheckBox fx:id="no" mnemonicParsing="false" text="No." />
+                            <CheckBox fx:id="state" mnemonicParsing="false" text="状態" />
+                            <CheckBox fx:id="title" mnemonicParsing="false" text="タイトル" />
+                            <CheckBox fx:id="detail" mnemonicParsing="false" text="内容" />
+                            <CheckBox fx:id="fuel" mnemonicParsing="false" text="燃料" />
+                            <CheckBox fx:id="ammo" mnemonicParsing="false" text="弾薬" />
+                            <CheckBox fx:id="metal" mnemonicParsing="false" text="鋼材" />
+                            <CheckBox fx:id="bauxite" mnemonicParsing="false" text="ボーキ" />
+                            <CheckBox fx:id="due" mnemonicParsing="false" text="期限" />
+                            <CheckBox fx:id="sortie" mnemonicParsing="false" text="出撃" />
+                            <CheckBox fx:id="battleWin" mnemonicParsing="false" text="戦闘勝利" />
+                            <CheckBox fx:id="battleWinS" mnemonicParsing="false" text="戦闘S" />
+                            <CheckBox fx:id="bossArrive" mnemonicParsing="false" text="ボス到達" />
+                            <CheckBox fx:id="bossWin" mnemonicParsing="false" text="ボス勝利" />
+                            <CheckBox fx:id="boss1_4WinS" mnemonicParsing="false" text="1-4S" />
+                            <CheckBox fx:id="boss1_5WinA" mnemonicParsing="false" text="1-5A" />
+                            <CheckBox fx:id="boss2Win" mnemonicParsing="false" text="南西" />
+                            <CheckBox fx:id="boss3_3pWin" mnemonicParsing="false" text="3-3+" />
+                            <CheckBox fx:id="boss4Win" mnemonicParsing="false" text="西方" />
+                            <CheckBox fx:id="boss4_4Win" mnemonicParsing="false" text="4-4" />
+                            <CheckBox fx:id="boss5_2WinS" mnemonicParsing="false" text="5-2S" />
+                            <CheckBox fx:id="boss6_1WinS" mnemonicParsing="false" text="6-1S" />
+                            <CheckBox fx:id="defeatAP" mnemonicParsing="false" text="補給艦" />
+                            <CheckBox fx:id="defeatCV" mnemonicParsing="false" text="空母" />
+                            <CheckBox fx:id="defeatSS" mnemonicParsing="false" text="潜水艦" />
+                            <CheckBox fx:id="practice" mnemonicParsing="false" text="演習" />
+                            <CheckBox fx:id="practiceWin" mnemonicParsing="false" text="演習勝利" />
+                            <CheckBox fx:id="missionSuccess" mnemonicParsing="false" text="遠征" />
+                            <CheckBox fx:id="createShip" mnemonicParsing="false" text="建造" />
+                            <CheckBox fx:id="createItem" mnemonicParsing="false" text="開発" />
+                            <CheckBox fx:id="destroyShip" mnemonicParsing="false" text="解体" />
+                            <CheckBox fx:id="destroyItem" mnemonicParsing="false" text="廃棄" />
+                            <CheckBox fx:id="charge" mnemonicParsing="false" text="補給" />
+                            <CheckBox fx:id="repair" mnemonicParsing="false" text="入渠" />
+                            <CheckBox fx:id="powerUp" mnemonicParsing="false" text="改修" />
+                           </children>
+                       </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <HBox alignment="TOP_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#ok" text="OK">
+                     <HBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel">
+                     <HBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</VBox>

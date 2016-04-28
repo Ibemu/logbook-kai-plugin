@@ -3,6 +3,7 @@
 	<target name="all">
 		<echo message="Project build start." />
 		<antcall target="logger" />
+		<antcall target="quest" />
 		<echo message="Project build end." />
 	</target>
 	<target name="logger">
@@ -19,7 +20,39 @@
 			<service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.logger.PluginConfigMenuItem" />
 			<fileset dir="./bin">
 				<include name="**/ibemu/logbook/plugin/*.*"/>
-				<include name="**/ibemu/logbook/plugin/logger/*.*"/>
+				<include name="**/ibemu/logbook/plugin/logger/**"/>
+			</fileset>
+		</jar>
+	</target>
+	<target name="quest">
+		<!-- Quest -->
+		<jar destfile="dest/quest.jar">
+			<manifest>
+				<attribute name="Bundle-Name" value="Quest" />
+				<attribute name="Bundle-Vendor" value="Ibemu" />
+				<attribute name="Bundle-Version" value="0.1-beta" />
+				<attribute name="Bundle-License" value="MIT License" />
+			</manifest>
+			<service type="logbook.api.APIListenerSpi">
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiGetMemberQuestlist" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqHokyuCharge" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKaisouPowerup" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateitem" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateship" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyitem2" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyship" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqMapNext" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqMapStart" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqMissionResult" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqNyukyoStart" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqPracticeBattleResult" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqQuestClearitemget" />
+				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqSortieBattleresult" />
+			</service>
+			<service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.quest.QuestTableMenuItem" />
+			<fileset dir="./bin">
+				<include name="**/ibemu/logbook/plugin/*.*"/>
+				<include name="**/ibemu/logbook/plugin/quest/**"/>
 			</fileset>
 		</jar>
 	</target>
