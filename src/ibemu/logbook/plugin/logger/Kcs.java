@@ -29,7 +29,6 @@ public class Kcs implements ContentListenerSpi
     @Override
     public void accept(RequestMetaData req, ResponseMetaData res)
     {
-        LoggerHolder.LOG.info("kcs");
         try {
             //if(PluginConfig.get().isStoreKcsRequest()) kcsRequest(req);
             if(PluginConfig.get().isStoreKcsResponse()) kcsResponse(req, res);
@@ -37,7 +36,6 @@ public class Kcs implements ContentListenerSpi
         } catch(IOException e) {
             LoggerHolder.LOG.warn("kcs処理中に例外が発生しました", e);
         }
-        LoggerHolder.LOG.info("end of kcs");
     }
 /*
     public void kcsRequest(RequestMetaData req)
@@ -92,6 +90,7 @@ public class Kcs implements ContentListenerSpi
 
     public void kcsResource(RequestMetaData req, ResponseMetaData res)
     {
+        //TODO
     }
 
 

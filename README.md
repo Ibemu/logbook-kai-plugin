@@ -4,17 +4,29 @@
 
 ## プラグイン
 
-### Logger 0.1-alpha
+### Logger 0.1 alpha
 
 /kcs/の受信したファイルや/kcsapi/の送受信ログを保存する
 
-### Quest 0.1-beta
+#### 導入方法
+
+1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
+2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/logger-v0.1-alpha)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
+3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
+4. commons-io-2.5.jarをpluginsフォルダに置きます
+
+### Quest 0.1 beta
 
 任務カウンタ
 
+#### 導入方法
+
+1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
+2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v0.1-beta)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
+
 ## 使用ライブラリ
 
-### [Commons IO 2.4](https://commons.apache.org/proper/commons-io/)
+### [Commons IO 2.5](https://commons.apache.org/proper/commons-io/)
 
 * Logger で使用
 * Apache License 2.0
