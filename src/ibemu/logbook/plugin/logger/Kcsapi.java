@@ -3,6 +3,7 @@ package ibemu.logbook.plugin.logger;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -56,7 +57,7 @@ public class Kcsapi implements APIListenerSpi
         fname = FilenameUtils.concat(req.getRequestURI().substring(8), fname);
         // ファイルパス
         File file = new File(FilenameUtils.concat(PluginConfig.get().getKcsapiResponsePath(), fname));
-        FileUtils.writeStringToFile(file, json.toString());
+        FileUtils.writeStringToFile(file, json.toString(), Charset.defaultCharset());
     }
 
     private static class LoggerHolder {
