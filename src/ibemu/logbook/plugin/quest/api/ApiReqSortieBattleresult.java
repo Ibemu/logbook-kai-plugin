@@ -9,12 +9,8 @@ import ibemu.logbook.plugin.Config;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
+import logbook.bean.AppCondition;
 import logbook.bean.BattleLog;
-import logbook.bean.BattleTypes.IAirbattle;
-import logbook.bean.BattleTypes.IKouku;
-import logbook.bean.BattleTypes.IMidnightBattle;
-import logbook.bean.BattleTypes.ISortieHougeki;
-import logbook.bean.BattleTypes.ISupport;
 import logbook.bean.Enemy;
 import logbook.bean.MapStartNext;
 import logbook.internal.PhaseState;
@@ -36,42 +32,15 @@ public class ApiReqSortieBattleresult implements APIListenerSpi
     @Override
     public void accept(JsonObject json, RequestMetaData req, ResponseMetaData res)
     {
+        if(log == null) log = AppCondition.get().getBattleResult();
         if(log != null) {
             PhaseState ps = new PhaseState(log);
             PhaseState psm = null;
-            // 航空戦フェイズ
-            if (log.getBattle() instanceof IKouku) {
-                if (((IKouku) log.getBattle()).getKouku() != null) {
-                    // 航空戦フェイズ適用
-                    ps.applyKouku((IKouku) log.getBattle());
-                }
+            if (log.getBattle() != null) {
+                ps.apply(log.getBattle());
             }
-            // 支援フェイズ
-            if (log.getBattle() instanceof ISupport) {
-                if (((ISupport) log.getBattle()).getSupportInfo() != null) {
-                    // 支援フェイズ適用
-                    ps.applySupport((ISupport) log.getBattle());
-                }
-            }
-            // 砲雷撃戦フェイズ
-            if (log.getBattle() instanceof ISortieHougeki) {
-                // 砲雷撃戦フェイズ適用
-                ps.applySortieHougeki((ISortieHougeki) log.getBattle());
-            }
-            // 航空戦
-            if (log.getBattle() instanceof IAirbattle) {
-                // 航空戦適用
-                ps.applyAirbattle((IAirbattle) log.getBattle());
-            }
-            // 特殊夜戦
-            if (log.getBattle() instanceof IMidnightBattle) {
-                // 特殊夜戦適用
-                ps.applyMidnightBattle((IMidnightBattle) log.getBattle());
-            }
-            // 夜戦
             if (log.getMidnight() != null) {
                 psm = new PhaseState(log.getCombinedType(), log.getMidnight(), log.getDeckMap());
-                // 夜戦適用
                 psm.applyMidnightBattle(log.getMidnight());
             }
             PhaseState psl = psm == null ? ps : psm;
