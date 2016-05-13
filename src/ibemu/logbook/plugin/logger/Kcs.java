@@ -68,13 +68,13 @@ public class Kcs implements ContentListenerSpi
             if(i<0) {
                 //拡張子なし
                 fname = new StringBuilder(req.getRequestURI().substring(5));
-                if(PluginConfig.get().isAddKcsQueryString()) {
+                if(PluginConfig.get().isAddKcsQueryString() && req.getQueryString() != null) {
                     fname.append('_').append(req.getQueryString());
                 }
             }
             else {
                 fname = new StringBuilder(req.getRequestURI().substring(5,i));
-                if(PluginConfig.get().isAddKcsQueryString()) {
+                if(PluginConfig.get().isAddKcsQueryString() && req.getQueryString() != null) {
                     fname.append('_').append(req.getQueryString());
                 }
                 fname.append(req.getRequestURI().substring(i));
@@ -92,7 +92,6 @@ public class Kcs implements ContentListenerSpi
     {
         //TODO
     }
-
 
     private static class LoggerHolder {
         /** ロガー */
