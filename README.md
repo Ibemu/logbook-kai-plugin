@@ -4,7 +4,7 @@
 
 ## プラグイン
 
-### Logger 0.0.1 Alpha
+### Logger 0.0.2-alpha
 
 /kcs/の受信したファイルや/kcsapi/の送受信ログを保存する
 
@@ -15,7 +15,7 @@
 3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
 4. commons-io-2.5.jarをpluginsフォルダに置きます
 
-### Quest 0.1.1 Beta
+### Quest 0.1.2-beta
 
 任務カウンタ
 
