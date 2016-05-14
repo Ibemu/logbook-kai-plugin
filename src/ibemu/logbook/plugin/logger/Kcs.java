@@ -65,17 +65,18 @@ public class Kcs implements ContentListenerSpi
             // ファイル名
             int i = req.getRequestURI().lastIndexOf(".");
             StringBuilder fname;
+            String qs = processQueryString(req.getQueryString());
             if(i<0) {
                 //拡張子なし
                 fname = new StringBuilder(req.getRequestURI().substring(5));
-                if(PluginConfig.get().isAddKcsQueryString() && req.getQueryString() != null) {
-                    fname.append('_').append(req.getQueryString());
+                if(qs != null) {
+                    fname.append('_').append(qs);
                 }
             }
             else {
                 fname = new StringBuilder(req.getRequestURI().substring(5,i));
-                if(PluginConfig.get().isAddKcsQueryString() && req.getQueryString() != null) {
-                    fname.append('_').append(req.getQueryString());
+                if(qs != null) {
+                    fname.append('_').append(qs);
                 }
                 fname.append(req.getRequestURI().substring(i));
             }
@@ -91,6 +92,13 @@ public class Kcs implements ContentListenerSpi
     public void kcsResource(RequestMetaData req, ResponseMetaData res)
     {
         //TODO
+    }
+
+    private String processQueryString(String qs) {
+        if(!PluginConfig.get().isAddKcsQueryString()) return null;
+        if(!PluginConfig.get().isRemoveApiToken()) return qs;
+        if(qs == null) return null;
+        return qs.replaceAll("&api(_|%5F)token=[0-9a-f]+|api(_|%5F)token=[0-9a-f]+&?", "");
     }
 
     private static class LoggerHolder {

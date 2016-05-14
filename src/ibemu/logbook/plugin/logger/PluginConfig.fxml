@@ -46,6 +46,12 @@
             <Insets bottom="3.0" top="3.0" />
          </padding>
       </Separator>
+      <CheckBox fx:id="removeApiToken" mnemonicParsing="false" text="QueryStringのapi_tokenを削除する" />
+      <Separator prefWidth="200.0">
+         <padding>
+            <Insets bottom="3.0" top="3.0" />
+         </padding>
+      </Separator>
       <HBox alignment="TOP_RIGHT">
          <children>
             <Button mnemonicParsing="false" onAction="#ok" text="OK">
