@@ -46,6 +46,10 @@ public class PluginConfigController extends WindowController
     @FXML
     private CheckBox addKcsQueryString;
 
+    /** /kcs/ のQueryStringのapi_tokenを無視する */
+    @FXML
+    private CheckBox removeApiToken;
+
     /** /kcs/ のリソースを展開して保存する */
     @FXML
     private CheckBox storeKcsResource;
@@ -74,6 +78,7 @@ public class PluginConfigController extends WindowController
         this.storeKcsResponse.setSelected(conf.isStoreKcsResponse());
         this.kcsResponsePath.setText(conf.getKcsResponsePath());
         this.addKcsQueryString.setSelected(conf.isAddKcsQueryString());
+        this.removeApiToken.setSelected(conf.isRemoveApiToken());
 
         this.storeKcsResource.setSelected(conf.isStoreKcsResource());
         this.kcsResourcePath.setText(conf.getKcsResourcePath());
@@ -111,6 +116,7 @@ public class PluginConfigController extends WindowController
         conf.setStoreKcsResponse(this.storeKcsResponse.isSelected());
         conf.setKcsResponsePath(this.kcsResponsePath.getText());
         conf.setAddKcsQueryString(this.addKcsQueryString.isSelected());
+        conf.setRemoveApiToken(this.removeApiToken.isSelected());
 
         conf.setStoreKcsResource(this.storeKcsResource.isSelected());
         conf.setKcsResourcePath(this.kcsResourcePath.getText());

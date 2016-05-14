@@ -39,6 +39,9 @@ public class PluginConfig implements Serializable
     /** /kcs/ のQueryStringをファイル名に反映する */
     private boolean addKcsQueryString = true;
 
+    /** /kcs/ のQueryStringのapi_tokenを無視する */
+    private boolean removeApiToken = true;
+
     /** /kcs/ のリソースを展開して保存する */
     private boolean storeKcsResource = true;
 
@@ -190,6 +193,22 @@ public class PluginConfig implements Serializable
     public void setAddKcsQueryString(boolean addKcsQueryString)
     {
         this.addKcsQueryString = addKcsQueryString;
+    }
+
+    /**
+     * @return removeApiToken
+     */
+    public boolean isRemoveApiToken()
+    {
+        return removeApiToken;
+    }
+
+    /**
+     * @param removeApiToken セットする removeApiToken
+     */
+    public void setRemoveApiToken(boolean removeApiToken)
+    {
+        this.removeApiToken = removeApiToken;
     }
 
     /**
