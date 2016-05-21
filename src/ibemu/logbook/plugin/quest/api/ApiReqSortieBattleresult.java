@@ -22,17 +22,12 @@ import logbook.proxy.ResponseMetaData;
 @API({"/kcsapi/api_req_sortie/battleresult", "/kcsapi/api_req_combined_battle/battleresult"})
 public class ApiReqSortieBattleresult implements APIListenerSpi
 {
-    private static BattleLog log = null;
-
-    public static void setLog(BattleLog log)
-    {
-        ApiReqSortieBattleresult.log = log;
-    }
 
     @Override
     public void accept(JsonObject json, RequestMetaData req, ResponseMetaData res)
     {
-        if(log == null) log = AppCondition.get().getBattleResult();
+        BattleLog log = AppCondition.get().getBattleResult();
+        if(log == null) log = AppCondition.get().getBattleResultConfirm();
         if(log != null) {
             PhaseState ps = new PhaseState(log);
             PhaseState psm = null;

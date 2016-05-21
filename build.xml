@@ -47,7 +47,6 @@
 				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqPracticeBattleResult" />
 				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqQuestClearitemget" />
                 <provider classname="ibemu.logbook.plugin.quest.api.ApiReqSortieBattleresult" />
-                <provider classname="ibemu.logbook.plugin.quest.api.BattleResultListener" />
 			</service>
 			<service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.quest.QuestTableMenuItem" />
 			<fileset dir="./bin">
