@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ibemu.logbook.plugin.Config;
+import ibemu.logbook.plugin.quest.ApiHelper;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
@@ -30,8 +31,7 @@ public class ApiReqQuestClearitemget implements APIListenerSpi
         if(!req.getRequestBody().isPresent()) return;
         try
         {
-            Map<String, String> m = getQueryMap(URLDecoder.decode(IOUtils.toString(req.getRequestBody().get(), StandardCharsets.UTF_8),
-                                                                  StandardCharsets.UTF_8.name()));
+            Map<String, String> m = ApiHelper.getQueryMap(req.getRequestBody().get());
             String idstr = m.get("api_quest_id");
             if (idstr != null) {
                 Integer id = Integer.valueOf(idstr);
@@ -43,21 +43,6 @@ public class ApiReqQuestClearitemget implements APIListenerSpi
         {
             LoggerHolder.LOG.warn("任務削除に例外が発生しました", e);
         }
-    }
-
-    public static Map<String, String> getQueryMap(String query) {
-        String[] params = query.split("&");
-        Map<String, String> map = new HashMap<String, String>();
-        for (String param : params) {
-            String[] splited = param.split("=");
-            String name = splited[0];
-            String value = null;
-            if (splited.length == 2) {
-                value = splited[1];
-            }
-            map.put(name, value);
-        }
-        return map;
     }
 
     private static class LoggerHolder {
