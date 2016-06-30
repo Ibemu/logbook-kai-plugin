@@ -1,7 +1,6 @@
 package ibemu.logbook.plugin.quest.api;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -55,7 +54,6 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                         switch (quest.getType())
                         {
                         case 1:
-                        case 5:
                             quest.setDue(QuestDue.getDaily());
                             break;
                         case 2:
@@ -64,8 +62,14 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                         case 3:
                             quest.setDue(QuestDue.getMonthly());
                             break;
-                        default:
-                            break;
+                        case 5:
+                            switch (quest.getNo())
+                            {
+                            case 211:
+                            case 212:
+                                quest.setDue(QuestDue.getDaily());
+                                break;
+                            }
                         }
                         QuestCollection.get().getQuestMap().put(key, quest);
                         if(key < min) min = key;
