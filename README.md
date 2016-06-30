@@ -15,14 +15,14 @@
 3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
 4. commons-io-2.5.jarをpluginsフォルダに置きます
 
-### Quest v0.1.3 Beta
+### Quest v0.1.4 Beta
 
 任務カウンタ
 
 #### 導入方法
 
 1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
-2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v0.1.3-beta)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
+2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v0.1.4-beta)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
 3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
 4. commons-io-2.5.jarをpluginsフォルダに置きます
 
