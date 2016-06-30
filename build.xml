@@ -30,7 +30,7 @@
 			<manifest>
 				<attribute name="Bundle-Name" value="Quest" />
 				<attribute name="Bundle-Vendor" value="Ibemu" />
-				<attribute name="Bundle-Version" value="0.1.3-beta" />
+				<attribute name="Bundle-Version" value="0.1.4-beta" />
 				<attribute name="Bundle-License" value="MIT License" />
 			</manifest>
 			<service type="logbook.api.APIListenerSpi">
