@@ -1,8 +1,15 @@
 package ibemu.logbook.plugin.quest;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TimeZone;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import ibemu.logbook.plugin.Config;
 
@@ -21,6 +28,7 @@ public class QuestCollection implements Serializable
      * @return 任務
      */
     public Map<Integer, Quest> getQuestMap() {
+        questMap.entrySet().removeIf(x -> (x.getValue().getDue() != null) && x.getValue().getDue().before(new Date()));
         return this.questMap;
     }
 
