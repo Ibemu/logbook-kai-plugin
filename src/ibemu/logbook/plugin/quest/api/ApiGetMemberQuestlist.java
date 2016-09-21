@@ -35,6 +35,7 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
         JsonObject apidata = json.getJsonObject("api_data");
         if (!apidata.isNull("api_list")) {
             JsonArray apilist = apidata.getJsonArray("api_list");
+            Map<Integer, Quest> questMap = QuestCollection.get().getQuestMap();
             Set<Integer> keys = new HashSet<Integer>();
             int min = 9999;
             int max = 0;
@@ -49,7 +50,7 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                         JsonObject questobject = (JsonObject) value;
                         int key = questobject.getInt("api_no");
                         // 任務を作成
-                        Quest quest = Quest.setQuestlist(QuestCollection.get().getQuestMap().get(key), questobject);
+                        Quest quest = Quest.setQuestlist(questMap.get(key), questobject);
 
                         switch (quest.getType())
                         {
@@ -71,7 +72,7 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                                 break;
                             }
                         }
-                        QuestCollection.get().getQuestMap().put(key, quest);
+                        questMap.put(key, quest);
                         if(key < min) min = key;
                         if(max < key) max = key;
                         keys.add(key);
@@ -88,7 +89,7 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                 try
                 {
                     Map<String, String> m = ApiHelper.getQueryMap(req.getRequestBody().get());
-                    QuestCollection.get().getQuestMap().entrySet().removeIf(new QuestRemover(min, max, Integer.parseInt(m.get("api_tab_id")), keys));
+                    questMap.entrySet().removeIf(new QuestRemover(min, max, Integer.parseInt(m.get("api_tab_id")), keys));
                 }
                 catch (IOException e)
                 {
