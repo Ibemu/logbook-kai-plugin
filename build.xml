@@ -1,58 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="all" name="Create Runnable Jar for Project logbook-kai plugins in sub-folder">
-	<target name="all">
-		<echo message="Project build start." />
-		<antcall target="logger" />
-		<antcall target="quest" />
-		<echo message="Project build end." />
-	</target>
-	<target name="logger">
-		<!-- Logger -->
-		<jar destfile="dest/logger.jar">
-			<manifest>
-				<attribute name="Bundle-Name" value="Logger" />
-				<attribute name="Bundle-Vendor" value="Ibemu" />
-				<attribute name="Bundle-Version" value="0.0.2-alpha" />
-				<attribute name="Bundle-License" value="MIT License" />
-			</manifest>
-			<service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs" />
-			<service type="logbook.api.APIListenerSpi" provider="ibemu.logbook.plugin.logger.Kcsapi" />
-			<service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.logger.PluginConfigMenuItem" />
-			<fileset dir="./bin">
-				<include name="**/ibemu/logbook/plugin/*.*"/>
-				<include name="**/ibemu/logbook/plugin/logger/**"/>
-			</fileset>
-		</jar>
-	</target>
-	<target name="quest">
-		<!-- Quest -->
-		<jar destfile="dest/quest.jar">
-			<manifest>
-				<attribute name="Bundle-Name" value="Quest" />
-				<attribute name="Bundle-Vendor" value="Ibemu" />
-				<attribute name="Bundle-Version" value="0.1.4-beta" />
-				<attribute name="Bundle-License" value="MIT License" />
-			</manifest>
-			<service type="logbook.api.APIListenerSpi">
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiGetMemberQuestlist" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqHokyuCharge" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKaisouPowerup" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateitem" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateship" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyitem2" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyship" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqMapStart" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqMissionResult" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqNyukyoStart" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqPracticeBattleResult" />
-				<provider classname="ibemu.logbook.plugin.quest.api.ApiReqQuestClearitemget" />
+    <target name="all">
+        <echo message="Project build start." />
+        <antcall target="logger" />
+        <antcall target="quest" />
+        <antcall target="newship" />
+        <echo message="Project build end." />
+    </target>
+    <target name="logger">
+        <!-- Logger -->
+        <jar destfile="dest/logger.jar">
+            <manifest>
+                <attribute name="Bundle-Name" value="Logger" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="0.0.2-alpha" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs" />
+            <service type="logbook.api.APIListenerSpi" provider="ibemu.logbook.plugin.logger.Kcsapi" />
+            <service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.logger.PluginConfigMenuItem" />
+            <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/*.*"/>
+                <include name="**/ibemu/logbook/plugin/logger/**"/>
+            </fileset>
+        </jar>
+    </target>
+    <target name="quest">
+        <!-- Quest -->
+        <jar destfile="dest/quest.jar">
+            <manifest>
+                <attribute name="Bundle-Name" value="Quest" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="1.0.0" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.api.APIListenerSpi">
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiGetMemberQuestlist" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqHokyuCharge" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqKaisouPowerup" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateitem" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouCreateship" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyitem2" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqKousyouDestroyship" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqMapStart" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqMissionResult" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqNyukyoStart" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqPracticeBattleResult" />
+                <provider classname="ibemu.logbook.plugin.quest.api.ApiReqQuestClearitemget" />
                 <provider classname="ibemu.logbook.plugin.quest.api.ApiReqSortieBattleresult" />
-			</service>
-			<service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.quest.QuestTableMenuItem" />
-			<fileset dir="./bin">
-				<include name="**/ibemu/logbook/plugin/*.*"/>
-				<include name="**/ibemu/logbook/plugin/quest/**"/>
-			</fileset>
-		</jar>
-	</target>
+            </service>
+            <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.quest.QuestTableMenuItem" />
+            <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/*.*"/>
+                <include name="**/ibemu/logbook/plugin/quest/**"/>
+            </fileset>
+        </jar>
+    </target>
+    <target name="newship">
+        <!-- New Ship -->
+        <jar destfile="dest/newship.jar">
+            <manifest>
+                <attribute name="Bundle-Name" value="New Ship" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="0.1.0-beta" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.api.APIListenerSpi">
+                <provider classname="ibemu.logbook.plugin.newship.api.ApiPortPort" />
+            </service>
+            <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/newship/**"/>
+            </fileset>
+        </jar>
+    </target>
 </project>
