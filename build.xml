@@ -5,6 +5,7 @@
         <antcall target="logger" />
         <antcall target="quest" />
         <antcall target="newship" />
+        <antcall target="jsonviewer" />
         <echo message="Project build end." />
     </target>
     <target name="logger">
@@ -70,6 +71,24 @@
             </service>
             <fileset dir="./bin">
                 <include name="**/ibemu/logbook/plugin/newship/**"/>
+            </fileset>
+        </jar>
+    </target>
+    <target name="jsonviewer">
+        <!-- Json Viewer -->
+        <jar destfile="dest/jsonviewer.jar">
+            <manifest>
+                <attribute name="Bundle-Name" value="Json Viewer" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="0.1.0-beta" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.api.APIListenerSpi">
+                <provider classname="ibemu.logbook.plugin.jsonviewer.api.Api" />
+            </service>
+            <service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.jsonviewer.JsonViewerMenuItem" />
+            <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/jsonviewer/**"/>
             </fileset>
         </jar>
     </target>

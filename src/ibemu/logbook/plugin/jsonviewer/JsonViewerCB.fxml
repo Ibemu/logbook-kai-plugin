@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ibemu.logbook.plugin.jsonviewer.JsonViewerController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+      <ColumnConstraints hgrow="ALWAYS" prefWidth="500.0" />
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints prefHeight="500.0" vgrow="ALWAYS" />
+   </rowConstraints>
+   <children>
+      <Label text="ログ">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <ComboBox fx:id="history" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+         <GridPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </GridPane.margin>
+      </ComboBox>
+      <CheckBox fx:id="auto" mnemonicParsing="false" selected="true" text="自動更新" GridPane.columnIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></CheckBox>
+      <Label text="日付" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="timestamp" editable="false" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label text="URI" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="uri" editable="false" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </GridPane.margin>
+      </TextField>
+      <Accordion GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+         <panes>
+            <TitledPane animated="false" text="リクエスト">
+               <content>
+                  <VBox>
+                     <children>
+                        <TextArea fx:id="request" editable="false" wrapText="true" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="レスポンス">
+               <content>
+                  <VBox>
+                     <children>
+                        <TextArea fx:id="response" editable="false" wrapText="true" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="JSONツリー">
+               <content>
+                  <VBox>
+                     <children>
+                        <TreeView fx:id="jsonTree" prefHeight="10.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+         </panes>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets top="3.0" />
+         </GridPane.margin>
+      </Accordion>
+   </children>
+</GridPane>
