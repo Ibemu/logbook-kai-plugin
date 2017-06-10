@@ -11,9 +11,9 @@
 #### 導入方法
 
 1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
-2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/logger-v0.0.2-alpha)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
-3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
-4. commons-io-2.5.jarをpluginsフォルダに置きます
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/logger-v0.0.2-alpha)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
+1. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
+1. commons-io-2.5.jarをpluginsフォルダに置きます
 
 ### Quest v1.0.0
 
@@ -22,10 +22,9 @@
 #### 導入方法
 
 1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
-2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v1.0.0)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
-3. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
-4. commons-io-2.5.jarをpluginsフォルダに置きます
-
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v1.0.0)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
+1. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
+1. commons-io-2.5.jarをpluginsフォルダに置きます
 
 ### New Ship v0.1.0 Beta
 
@@ -34,12 +33,24 @@
 #### 導入方法
 
 1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
-2. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/newship-v0.1.0-beta)からプラグイン(newship.jar)をダウンロードしpluginsフォルダに置きます
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/newship-v0.1.0-beta)からプラグイン(newship.jar)をダウンロードしpluginsフォルダに置きます
+
+### Json Viewer v0.1.0 Beta
+
+API通信をみる
+JSONツリー表示付き
+
+#### 導入方法
+
+1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/jsonviewer-v0.1.0-beta)からプラグイン(jsonviewer.jar)をダウンロードしpluginsフォルダに置きます
+1. [Commons IO](https://commons.apache.org/proper/commons-io/)からcommons-io-2.5-bin.zipをダウンロードし解凍します
+1. commons-io-2.5.jarをpluginsフォルダに置きます
 
 ## 使用ライブラリ
 
 ### [Commons IO 2.5](https://commons.apache.org/proper/commons-io/)
 
-* Logger, Quest で使用
-* Apache License 2.0
-* ライセンス全文 : [http://www.apache.org/licenses/](http://www.apache.org/licenses/)
+- Logger, Quest, Json Viewer で使用
+- Apache License 2.0
+- ライセンス全文 : [http://www.apache.org/licenses/](http://www.apache.org/licenses/)
