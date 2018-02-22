@@ -14,7 +14,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Logger" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="0.0.2-alpha" />
+                <attribute name="Bundle-Version" value="0.0.3-alpha" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs" />
@@ -32,7 +32,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Quest" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="1.0.0" />
+                <attribute name="Bundle-Version" value="1.0.1" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.api.APIListenerSpi">
