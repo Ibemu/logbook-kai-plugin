@@ -13,7 +13,7 @@
           <Button mnemonicParsing="false" onAction="#selectColumn" text="列の表示" />
         </items>
       </ToolBar>
-      <TableView fx:id="questTable">
+      <TableView fx:id="questTable" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn id="no" fx:id="no" text="No." />
           <TableColumn fx:id="state" text="状態" />
