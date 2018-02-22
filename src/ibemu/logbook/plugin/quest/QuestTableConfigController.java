@@ -1,9 +1,9 @@
 package ibemu.logbook.plugin.quest;
 
-import ibemu.logbook.plugin.Config;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import logbook.internal.Config;
 import logbook.internal.ThreadManager;
 import logbook.internal.gui.WindowController;
 

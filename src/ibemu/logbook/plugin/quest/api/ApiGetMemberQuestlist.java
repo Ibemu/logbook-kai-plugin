@@ -14,13 +14,13 @@ import javax.json.JsonValue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ibemu.logbook.plugin.Config;
 import ibemu.logbook.plugin.quest.ApiHelper;
 import ibemu.logbook.plugin.quest.Quest;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import ibemu.logbook.plugin.quest.QuestDue;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
+import logbook.internal.Config;
 import logbook.internal.ThreadManager;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;

@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.json.JsonObject;
 
-import ibemu.logbook.plugin.Config;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
@@ -13,6 +12,7 @@ import logbook.bean.AppCondition;
 import logbook.bean.BattleLog;
 import logbook.bean.Enemy;
 import logbook.bean.MapStartNext;
+import logbook.internal.Config;
 import logbook.internal.PhaseState;
 import logbook.internal.Ships;
 import logbook.internal.ThreadManager;
