@@ -58,7 +58,7 @@ public class ApiReqSortieBattleresult implements APIListenerSpi
             ps.apply(log.getBattle());
         }
         if (log.getMidnight() != null) {
-            psm = new PhaseState(log.getCombinedType(), log.getMidnight(), log.getDeckMap());
+            psm = new PhaseState(log.getCombinedType(), log.getMidnight(), log.getDeckMap(), log.getItemMap(), log.getEscape());
             psm.applyMidnightBattle(log.getMidnight());
         }
         PhaseState psl = psm == null ? ps : psm;
