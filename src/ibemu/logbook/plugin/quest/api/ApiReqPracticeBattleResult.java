@@ -1,12 +1,13 @@
 package ibemu.logbook.plugin.quest.api;
 
 import java.util.Date;
+
 import javax.json.JsonObject;
 
-import ibemu.logbook.plugin.Config;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
+import logbook.internal.Config;
 import logbook.internal.ThreadManager;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;

@@ -2,7 +2,7 @@ package ibemu.logbook.plugin.logger;
 
 import java.io.Serializable;
 
-import ibemu.logbook.plugin.Config;
+import logbook.internal.Config;
 
 public class PluginConfig implements Serializable
 {

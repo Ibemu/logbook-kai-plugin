@@ -1,17 +1,12 @@
 package ibemu.logbook.plugin.quest;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TimeZone;
-import java.util.Timer;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import ibemu.logbook.plugin.Config;
+import logbook.bean.ShipCollection;
+import logbook.internal.Config;
 
 public class QuestCollection implements Serializable
 {
