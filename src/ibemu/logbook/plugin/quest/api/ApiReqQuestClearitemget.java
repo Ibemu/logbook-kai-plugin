@@ -1,14 +1,15 @@
 package ibemu.logbook.plugin.quest.api;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.json.JsonObject;
 
+import ibemu.logbook.plugin.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ibemu.logbook.plugin.quest.ApiHelper;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
@@ -27,7 +28,9 @@ public class ApiReqQuestClearitemget implements APIListenerSpi
         if(!req.getRequestBody().isPresent()) return;
         try
         {
-            Map<String, String> m = ApiHelper.getQueryMap(req.getRequestBody().get());
+            InputStream stream = req.getRequestBody().get();
+            if(stream.markSupported()) stream.reset();
+            Map<String, String> m = Utility.getQueryMap(stream);
             String idstr = m.get("api_quest_id");
             if (idstr != null) {
                 Integer id = Integer.valueOf(idstr);

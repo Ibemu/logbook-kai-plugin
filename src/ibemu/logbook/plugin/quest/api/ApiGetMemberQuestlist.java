@@ -1,6 +1,7 @@
 package ibemu.logbook.plugin.quest.api;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,10 +12,10 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 
+import ibemu.logbook.plugin.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ibemu.logbook.plugin.quest.ApiHelper;
 import ibemu.logbook.plugin.quest.Quest;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import ibemu.logbook.plugin.quest.QuestDue;
@@ -88,7 +89,9 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
             {
                 try
                 {
-                    Map<String, String> m = ApiHelper.getQueryMap(req.getRequestBody().get());
+                    InputStream stream = req.getRequestBody().get();
+                    if(stream.markSupported()) stream.reset();
+                    Map<String, String> m = Utility.getQueryMap(stream);
                     questMap.entrySet().removeIf(new QuestRemover(min, max, Integer.parseInt(m.get("api_tab_id")), keys));
                 }
                 catch (IOException e)
@@ -113,23 +116,23 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
             this.max = max;
             this.tab = tab;
             this.keys = keys;
-
         }
 
         @Override
         public boolean test(Entry<Integer, Quest> e)
         {
-            boolean base = (min < e.getKey()) && (e.getKey() < max) && (!keys.contains(e.getKey()));
+            int key = e.getKey();
+            boolean base = (min < key) && (key < max) && (!keys.contains(key));
             int state = e.getValue().getState();
             int type = e.getValue().getType();
             switch(tab)
             {
             case 0:
-                //全 All
+                // 全 All
                 return base;
 
             case 9:
-                //遂行中任務
+                // 遂行中任務
                 return base && (state == 2 || state == 3);
 
             default:
