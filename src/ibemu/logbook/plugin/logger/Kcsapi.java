@@ -1,17 +1,15 @@
 package ibemu.logbook.plugin.logger;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.json.JsonObject;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,13 +38,10 @@ public class Kcsapi implements APIListenerSpi
         if(req.getRequestBody().isPresent()) {
             // ファイル名
             String fname = new StringBuilder().append(time).append(".txt").toString();
-            fname = FilenameUtils.concat(req.getRequestURI().substring(8), fname);
             // ファイルパス
-            File file = new File(FilenameUtils.concat(PluginConfig.get().getKcsapiRequestPath(), fname));
-            file.getParentFile().mkdirs();
-            FileOutputStream fos = new FileOutputStream(file);
-            IOUtils.copy(req.getRequestBody().get(), fos);
-            fos.close();
+            Path path = Paths.get(PluginConfig.get().getKcsapiRequestPath(), req.getRequestURI().substring(8), fname);
+            Files.createDirectories(path.getParent());
+            Files.copy(req.getRequestBody().get(), path);
         }
     }
 
@@ -54,10 +49,10 @@ public class Kcsapi implements APIListenerSpi
     {
         // ファイル名
         String fname = new StringBuilder().append(time).append(".json").toString();
-        fname = FilenameUtils.concat(req.getRequestURI().substring(8), fname);
         // ファイルパス
-        File file = new File(FilenameUtils.concat(PluginConfig.get().getKcsapiResponsePath(), fname));
-        FileUtils.writeStringToFile(file, json.toString(), StandardCharsets.UTF_8);
+        Path path = Paths.get(PluginConfig.get().getKcsapiResponsePath(), req.getRequestURI().substring(8), fname);
+        Files.createDirectories(path.getParent());
+        Files.write(path, json.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     private static class LoggerHolder {

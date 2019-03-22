@@ -14,10 +14,10 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Logger" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="0.0.3-alpha" />
+                <attribute name="Bundle-Version" value="0.1.0-beta" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
-            <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs" />
+            <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs2" />
             <service type="logbook.api.APIListenerSpi" provider="ibemu.logbook.plugin.logger.Kcsapi" />
             <service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.logger.PluginConfigMenuItem" />
             <fileset dir="./bin">
@@ -70,6 +70,7 @@
                 <provider classname="ibemu.logbook.plugin.newship.api.ApiPortPort" />
             </service>
             <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/*.*"/>
                 <include name="**/ibemu/logbook/plugin/newship/**"/>
             </fileset>
         </jar>
@@ -88,6 +89,7 @@
             </service>
             <service type="logbook.plugin.gui.MainExtMenu" provider="ibemu.logbook.plugin.jsonviewer.JsonViewerMenuItem" />
             <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/*.*"/>
                 <include name="**/ibemu/logbook/plugin/jsonviewer/**"/>
             </fileset>
         </jar>

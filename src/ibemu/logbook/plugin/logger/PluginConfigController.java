@@ -26,41 +26,21 @@ public class PluginConfigController extends WindowController
     @FXML
     private TextField kcsapiResponsePath;
 
-    ///** /kcs/ のリクエストを保存する */
-    //@FXML
-    //private CheckBox storeKcsRequest;
-
-    ///** /kcs/ のリクエストを保存する */
-    //@FXML
-    //private TextField kcsRequestPath;
-
-    /** /kcs/ のレスポンスを保存する */
+    /** /kcs2/ のレスポンスを保存する */
     @FXML
-    private CheckBox storeKcsResponse;
+    private CheckBox storeKcs2Response;
 
-    /** /kcs/ のレスポンスを保存する */
+    /** /kcs2/ のレスポンスを保存する */
     @FXML
-    private TextField kcsResponsePath;
+    private TextField kcs2ResponsePath;
 
-    /** /kcs/ のQueryStringをファイル名に反映する */
+    /** /kcs2/ のQueryStringをファイル名に反映する */
     @FXML
-    private CheckBox addKcsQueryString;
+    private CheckBox addKcs2QueryString;
 
-    /** /kcs/ のQueryStringのapi_tokenを無視する */
+    /** /kcs2/ のQueryStringのapi_tokenを無視する */
     @FXML
     private CheckBox removeApiToken;
-
-    /** /kcs/ のリソースを展開して保存する */
-    @FXML
-    private CheckBox storeKcsResource;
-
-    /** /kcs/ のリソースを展開して保存する */
-    @FXML
-    private TextField kcsResourcePath;
-
-    /** /kcs/ のQueryStringをディレクトリ名に反映する */
-    @FXML
-    private CheckBox addKcsResourceQueryString;
 
     @FXML
     void initialize() {
@@ -72,17 +52,10 @@ public class PluginConfigController extends WindowController
         this.storeKcsapiResponse.setSelected(conf.isStoreKcsapiResponse());
         this.kcsapiResponsePath.setText(conf.getKcsapiResponsePath());
 
-        //this.storeKcsRequest.setSelected(conf.isStoreKcsRequest());
-        //this.kcsRequestPath.setText(conf.getKcsRequestPath());
-
-        this.storeKcsResponse.setSelected(conf.isStoreKcsResponse());
-        this.kcsResponsePath.setText(conf.getKcsResponsePath());
-        this.addKcsQueryString.setSelected(conf.isAddKcsQueryString());
+        this.storeKcs2Response.setSelected(conf.isStoreKcs2Response());
+        this.kcs2ResponsePath.setText(conf.getKcs2ResponsePath());
+        this.addKcs2QueryString.setSelected(conf.isAddKcs2QueryString());
         this.removeApiToken.setSelected(conf.isRemoveApiToken());
-
-        this.storeKcsResource.setSelected(conf.isStoreKcsResource());
-        this.kcsResourcePath.setText(conf.getKcsResourcePath());
-        this.addKcsResourceQueryString.setSelected(conf.isAddKcsResourceQueryString());
     }
 
     /**
@@ -110,17 +83,10 @@ public class PluginConfigController extends WindowController
         conf.setStoreKcsapiResponse(this.storeKcsapiResponse.isSelected());
         conf.setKcsapiResponsePath(this.kcsapiResponsePath.getText());
 
-        //conf.setStoreKcsRequest(this.storeKcsRequest.isSelected());
-        //conf.setKcsRequestPath(this.kcsRequestPath.getText());
-
-        conf.setStoreKcsResponse(this.storeKcsResponse.isSelected());
-        conf.setKcsResponsePath(this.kcsResponsePath.getText());
-        conf.setAddKcsQueryString(this.addKcsQueryString.isSelected());
+        conf.setStoreKcs2Response(this.storeKcs2Response.isSelected());
+        conf.setKcs2ResponsePath(this.kcs2ResponsePath.getText());
+        conf.setAddKcs2QueryString(this.addKcs2QueryString.isSelected());
         conf.setRemoveApiToken(this.removeApiToken.isSelected());
-
-        conf.setStoreKcsResource(this.storeKcsResource.isSelected());
-        conf.setKcsResourcePath(this.kcsResourcePath.getText());
-        conf.setAddKcsResourceQueryString(this.addKcsResourceQueryString.isSelected());
 
         ThreadManager.getExecutorService()
                 .execute(Config.getDefault()::store);

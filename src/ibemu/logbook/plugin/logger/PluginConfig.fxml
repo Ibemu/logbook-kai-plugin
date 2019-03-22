@@ -28,19 +28,10 @@
             <Insets bottom="3.0" top="3.0" />
          </padding>
       </Separator>
-      <CheckBox fx:id="storeKcsResponse" mnemonicParsing="false" text="/kcs/ のレスポンス" />
+      <CheckBox fx:id="storeKcs2Response" mnemonicParsing="false" text="/kcs2/ のレスポンス" />
       <Label text="パス" />
-      <TextField fx:id="kcsResponsePath" />
-      <CheckBox fx:id="addKcsQueryString" mnemonicParsing="false" text="QueryStringをファイル名に反映する" />
-      <Separator prefWidth="200.0">
-         <padding>
-            <Insets bottom="3.0" top="3.0" />
-         </padding>
-      </Separator>
-      <CheckBox fx:id="storeKcsResource" mnemonicParsing="false" text="リソースを展開して保存する" />
-      <Label text="パス" />
-      <TextField fx:id="kcsResourcePath" />
-      <CheckBox fx:id="addKcsResourceQueryString" mnemonicParsing="false" text="QueryStringをファイル名に反映する" />
+      <TextField fx:id="kcs2ResponsePath" />
+      <CheckBox fx:id="addKcs2QueryString" mnemonicParsing="false" text="QueryStringをファイル名に反映する" />
       <Separator prefWidth="200.0">
          <padding>
             <Insets bottom="3.0" top="3.0" />

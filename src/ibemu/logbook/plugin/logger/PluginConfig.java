@@ -24,32 +24,17 @@ public class PluginConfig implements Serializable
     /** /kcsapi/ のレスポンスを保存する */
     private String kcsapiResponsePath = "./plugins/logger/kcsapi/";
 
-    ///** /kcs/ のリクエストを保存する */
-    //private boolean storeKcsRequest = false;
+    /** /kcs2/ のレスポンスを保存する */
+    private boolean storeKcs2Response = true;
 
-    ///** /kcs/ のリクエストを保存する */
-    //private String kcsRequestPath = "./plugins/logger/kcsReq/";
+    /** /kcs2/ のレスポンスを保存する */
+    private String kcs2ResponsePath = "./plugins/logger/kcs2/";
 
-    /** /kcs/ のレスポンスを保存する */
-    private boolean storeKcsResponse = true;
+    /** /kcs2/ のQueryStringをファイル名に反映する */
+    private boolean addKcs2QueryString = true;
 
-    /** /kcs/ のレスポンスを保存する */
-    private String kcsResponsePath = "./plugins/logger/kcs/";
-
-    /** /kcs/ のQueryStringをファイル名に反映する */
-    private boolean addKcsQueryString = true;
-
-    /** /kcs/ のQueryStringのapi_tokenを無視する */
+    /** /kcs2/ のQueryStringのapi_tokenを無視する */
     private boolean removeApiToken = true;
-
-    /** /kcs/ のリソースを展開して保存する */
-    private boolean storeKcsResource = true;
-
-    /** /kcs/ のリソースを展開して保存する */
-    private String kcsResourcePath = "./plugins/logger/resource/";
-
-    /** /kcs/ のQueryStringをディレクトリ名に反映する */
-    private boolean addKcsResourceQueryString = true;
 
     /**
      * @return storeKcsapiRequest
@@ -115,84 +100,52 @@ public class PluginConfig implements Serializable
         this.kcsapiResponsePath = kcsapiResponsePath;
     }
 
-    ///**
-    // * @return storeKcsRequest
-    // */
-    //public boolean isStoreKcsRequest()
-    //{
-    //    return storeKcsRequest;
-    //}
-
-    ///**
-    // * @param storeKcsRequest セットする storeKcsRequest
-    // */
-    //public void setStoreKcsRequest(boolean storeKcsRequest)
-    //{
-    //    this.storeKcsRequest = storeKcsRequest;
-    //}
-
-    ///**
-    // * @return kcsRequestPath
-    // */
-    //public String getKcsRequestPath()
-    //{
-    //    return kcsRequestPath;
-    //}
-
-    ///**
-    // * @param kcsRequestPath セットする kcsRequestPath
-    // */
-    //public void setKcsRequestPath(String kcsRequestPath)
-    //{
-    //    this.kcsRequestPath = kcsRequestPath;
-    //}
-
     /**
-     * @return storeKcsResponse
+     * @return storeKcs2Response
      */
-    public boolean isStoreKcsResponse()
+    public boolean isStoreKcs2Response()
     {
-        return storeKcsResponse;
+        return storeKcs2Response;
     }
 
     /**
-     * @param storeKcsResponse セットする storeKcsResponse
+     * @param storeKcs2Response セットする storeKcs2Response
      */
-    public void setStoreKcsResponse(boolean storeKcsResponse)
+    public void setStoreKcs2Response(boolean storeKcs2Response)
     {
-        this.storeKcsResponse = storeKcsResponse;
+        this.storeKcs2Response = storeKcs2Response;
     }
 
     /**
-     * @return kcsResponsePath
+     * @return kcs2ResponsePath
      */
-    public String getKcsResponsePath()
+    public String getKcs2ResponsePath()
     {
-        return kcsResponsePath;
+        return kcs2ResponsePath;
     }
 
     /**
-     * @param kcsResponsePath セットする kcsResponsePath
+     * @param kcs2ResponsePath セットする kcs2ResponsePath
      */
-    public void setKcsResponsePath(String kcsResponsePath)
+    public void setKcs2ResponsePath(String kcs2ResponsePath)
     {
-        this.kcsResponsePath = kcsResponsePath;
+        this.kcs2ResponsePath = kcs2ResponsePath;
     }
 
     /**
-     * @return addKcsQueryString
+     * @return addKcs2QueryString
      */
-    public boolean isAddKcsQueryString()
+    public boolean isAddKcs2QueryString()
     {
-        return addKcsQueryString;
+        return addKcs2QueryString;
     }
 
     /**
-     * @param addKcsQueryString セットする addKcsQueryString
+     * @param addKcs2QueryString セットする addKcs2QueryString
      */
-    public void setAddKcsQueryString(boolean addKcsQueryString)
+    public void setAddKcs2QueryString(boolean addKcs2QueryString)
     {
-        this.addKcsQueryString = addKcsQueryString;
+        this.addKcs2QueryString = addKcs2QueryString;
     }
 
     /**
@@ -209,54 +162,6 @@ public class PluginConfig implements Serializable
     public void setRemoveApiToken(boolean removeApiToken)
     {
         this.removeApiToken = removeApiToken;
-    }
-
-    /**
-     * @return storeKcsResource
-     */
-    public boolean isStoreKcsResource()
-    {
-        return storeKcsResource;
-    }
-
-    /**
-     * @param storeKcsResource セットする storeKcsResource
-     */
-    public void setStoreKcsResource(boolean storeKcsResource)
-    {
-        this.storeKcsResource = storeKcsResource;
-    }
-
-    /**
-     * @return kcsResourcePath
-     */
-    public String getKcsResourcePath()
-    {
-        return kcsResourcePath;
-    }
-
-    /**
-     * @param kcsResourcePath セットする kcsResourcePath
-     */
-    public void setKcsResourcePath(String kcsResourcePath)
-    {
-        this.kcsResourcePath = kcsResourcePath;
-    }
-
-    /**
-     * @return addKcsResourceQueryString
-     */
-    public boolean isAddKcsResourceQueryString()
-    {
-        return addKcsResourceQueryString;
-    }
-
-    /**
-     * @param addKcsResourceQueryString セットする addKcsResourceQueryString
-     */
-    public void setAddKcsResourceQueryString(boolean addKcsResourceQueryString)
-    {
-        this.addKcsResourceQueryString = addKcsResourceQueryString;
     }
 
     /**
