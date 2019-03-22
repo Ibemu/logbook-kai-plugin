@@ -11,7 +11,7 @@
 #### 導入方法
 
 1. [航海日誌](https://github.com/sanaehirotaka/logbook-kai)をインストールします
-1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/logger-v0.1.0-beta)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/log-v0.1.0-beta)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
 
 ### Quest v1.0.2
 
