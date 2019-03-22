@@ -2,15 +2,13 @@ package ibemu.logbook.plugin.jsonviewer;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.zip.GZIPInputStream;
 
 import javax.json.JsonObject;
 
-import org.apache.commons.io.IOUtils;
-
+import ibemu.logbook.plugin.Utility;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ApiData
 {
@@ -80,7 +80,7 @@ public class ApiData
         if(req.getRequestBody().isPresent())
         {
             req.getRequestBody().get().reset();
-            this.request = IOUtils.toString(req.getRequestBody().get(), StandardCharsets.UTF_8);
+            this.request = Utility.toString(req.getRequestBody().get());
         }
         else this.request = "";
         this.requestProperty = new SimpleStringProperty(this.request);
@@ -88,19 +88,32 @@ public class ApiData
         if(res.getResponseBody().isPresent())
         {
             InputStream stream = res.getResponseBody().get();
-            stream.reset();
-            // Check header
-            int header = (stream.read() | (stream.read() << 8));
-            stream.reset();
-            if (header == GZIPInputStream.GZIP_MAGIC)
-                stream = new GZIPInputStream(stream);
-            this.response = IOUtils.toString(stream, StandardCharsets.UTF_8);
+            if(stream.markSupported())
+            {
+                stream.reset();
+                // Check header
+                int header = (stream.read() | (stream.read() << 8));
+                stream.reset();
+                if (header == GZIPInputStream.GZIP_MAGIC)
+                    stream = new GZIPInputStream(stream);
+            }
+            String resp;
+            try
+            {
+                resp = Utility.toString(stream);
+            }
+            catch(IOException e)
+            {
+                resp = "エラー: " + e.getMessage();
+                LoggerHolder.LOG.warn("JsonViewer処理中に例外が発生しました", e);
+            }
+            this.response = resp;
         }
-        else this.response = "";
+        else this.response = "レスポンスが存在しません";
         this.responseProperty = new SimpleStringProperty(this.response);
 
         this.json = json;
-        this.jsonTreeItem = new SimpleObjectProperty<TreeItem<NamedJsonValue>>(new JsonTreeItem(new NamedJsonValue("svdata", json)));
+        this.jsonTreeItem = new SimpleObjectProperty<>(new JsonTreeItem(new NamedJsonValue("svdata", json)));
     }
 
     @Override
@@ -180,5 +193,10 @@ public class ApiData
     public ReadOnlyObjectProperty<TreeItem<NamedJsonValue>> jsonProperty()
     {
         return jsonTreeItem;
+    }
+
+    private static class LoggerHolder {
+        /** ロガー */
+        private static final Logger LOG = LogManager.getLogger(ApiData.class);
     }
 }
