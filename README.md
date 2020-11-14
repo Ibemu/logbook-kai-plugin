@@ -1,42 +1,22 @@
 # logbook-kai-plugin
-
 sanaehirotaka氏、Sdk0815氏の[航海日誌](https://github.com/Sdk0815/logbook-kai) のプラグイン集(予定)
 
-## プラグイン
-
-### Logger v0.1.0 Beta
-
-/kcs/の受信したファイルや/kcsapi/の送受信ログを保存する
-
-#### 導入方法
-
+## 導入方法（共通）
 1. [航海日誌](https://github.com/Sdk0815/logbook-kai)をインストールします
-1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/log-v0.1.0-beta)からプラグイン(logger.jar)をダウンロードしpluginsフォルダに置きます
+1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases)からプラグイン（.jarファイル）をダウンロードしpluginsフォルダに置きます
 
+## プラグイン紹介
 ### Quest v1.0.2
-
-任務カウンタ
-
-#### 導入方法
-
-1. [航海日誌](https://github.com/Sdk0815/logbook-kai)をインストールします
-1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/quest-v1.0.2)からプラグイン(quest.jar)をダウンロードしpluginsフォルダに置きます
+任務カウンターです。ありがちな達成条件をカウントします。
 
 ### New Ship v1.0.0
+知らない子が着任したときに通知します。
 
-知らない子通知
-
-#### 導入方法
-
-1. [航海日誌](https://github.com/Sdk0815/logbook-kai)をインストールします
-1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/newship-v1.0.0)からプラグイン(newship.jar)をダウンロードしpluginsフォルダに置きます
+### Widget v0.0.1 Alpha
+コンパクトなウィジェット類を追加します。
 
 ### Json Viewer v0.2.0 Beta
+API通信を見るGUIです。JSONをツリー表示できます。
 
-API通信をみる
-JSONツリー表示付き
-
-#### 導入方法
-
-1. [航海日誌](https://github.com/Sdk0815/logbook-kai)をインストールします
-1. [リリースページ](https://github.com/Ibemu/logbook-kai-plugin/releases/tag/jsonviewer-v0.2.0-beta)からプラグイン(jsonviewer.jar)をダウンロードしpluginsフォルダに置きます
+### Logger v0.1.0 Beta
+受信したファイルやAPIの送受信ログを保存します。
