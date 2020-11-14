@@ -6,6 +6,7 @@
         <antcall target="quest" />
         <antcall target="newship" />
         <antcall target="jsonviewer" />
+        <antcall target="widget" />
         <echo message="Project build end." />
     </target>
     <target name="logger">
@@ -89,6 +90,21 @@
             <fileset dir="./bin">
                 <include name="**/ibemu/logbook/plugin/*.*"/>
                 <include name="**/ibemu/logbook/plugin/jsonviewer/**"/>
+            </fileset>
+        </jar>
+    </target>
+    <target name="widget">
+        <!-- Json Viewer -->
+        <jar destfile="dest/widget.jar">
+            <manifest>
+                <attribute name="Bundle-Name" value="Widget" />
+                <attribute name="Bundle-Vendor" value="Ibemu" />
+                <attribute name="Bundle-Version" value="0.0.1-alpha" />
+                <attribute name="Bundle-License" value="MIT License" />
+            </manifest>
+            <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.widget.TimerWidgetMenuItem" />
+            <fileset dir="./bin">
+                <include name="**/ibemu/logbook/plugin/widget/**"/>
             </fileset>
         </jar>
     </target>

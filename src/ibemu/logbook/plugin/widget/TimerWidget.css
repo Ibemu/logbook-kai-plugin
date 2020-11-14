@@ -1,0 +1,40 @@
+FlowPane {
+    -fx-padding: 0;
+}
+.time-dummy {
+    -fx-font-size: 12pt;
+}
+.time-pane .progress {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+.time-pane .progress {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+.time-pane .progress .track {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.time-pane .progress .bar {
+    -fx-background-color: #FFF3B3;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.time-pane .time {
+    -fx-font-size: 12pt;
+    -fx-padding: 0 3px 0 3px;
+}
+.time-pane.stage1 .progress .bar {
+    -fx-background-color: #FFF4B9;
+}
+.time-pane.stage2 .progress .bar {
+    -fx-background-color: #FFEF99;
+}
+.time-pane.stage3 .progress .bar {
+    -fx-background-color: #FFD700;
+}
+.time-pane.empty {
+    -fx-background-color: #C8E7FA;
+}
