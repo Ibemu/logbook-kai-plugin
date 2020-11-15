@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="GridPane" xmlns="http://javafx.com/javafx/8.0.171"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="名前" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="header"/>
+    <VBox fx:id="name" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="耐久" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="5" styleClass="header"/>
+    <VBox fx:id="beforeHp" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <VBox fx:id="arrowHp" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+    <VBox fx:id="afterHp" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+    <VBox fx:id="slashHp" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+    <VBox fx:id="maxHp" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+</fx:root>

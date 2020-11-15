@@ -1,0 +1,36 @@
+FlowPane {
+    -fx-padding: 0;
+}
+Label {
+    -fx-max-width: infinity;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+.header {
+    -fx-font-weight: bold;
+}
+#beforeHp Label,
+#afterHp Label,
+#maxHp Label {
+    -fx-alignment: center-right;
+}
+.normal {
+}
+.slight-damage {
+}
+.half-damage {
+    -fx-background-color: #F90;
+    -fx-text-fill: #FFF;
+}
+.badly-damage {
+    -fx-background-color: #F00;
+    -fx-text-fill: #FFF;
+}
+.lost {
+    -fx-background-color: #009;
+    -fx-text-fill: #FFF;
+}
+.escape {
+    -fx-background-color: #999;
+    -fx-text-fill: #000;
+}

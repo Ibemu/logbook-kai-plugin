@@ -105,6 +105,7 @@
             <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.widget.TimerWidgetMenuItem">
                 <provider classname="ibemu.logbook.plugin.widget.TimerWidgetMenuItem" />
                 <provider classname="ibemu.logbook.plugin.widget.FleetWidgetMenuItem" />
+                <provider classname="ibemu.logbook.plugin.widget.SimpleBattleWidgetMenuItem" />
             </service>
             <fileset dir="./bin">
                 <include name="**/ibemu/logbook/plugin/widget/**"/>

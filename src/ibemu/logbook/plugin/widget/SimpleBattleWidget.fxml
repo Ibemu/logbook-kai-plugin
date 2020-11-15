@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ibemu.logbook.plugin.widget.SimpleBattleWidgetController" fx:id="root">
+    <TitledPane text="情報">
+        <FlowPane>
+            <VBox>
+                <Label text="マップ" styleClass="header"/>
+                <Label fx:id="map"/>
+            </VBox>
+            <VBox>
+                <Label text="ボス" styleClass="header"/>
+                <Label fx:id="boss"/>
+            </VBox>
+            <VBox>
+                <Label text="戦闘数" styleClass="header"/>
+                <Label fx:id="count"/>
+            </VBox>
+            <VBox>
+                <Label text="昼夜" styleClass="header"/>
+                <Label fx:id="day"/>
+            </VBox>
+            <VBox>
+                <Label text="ランク" styleClass="header"/>
+                <Label fx:id="rank"/>
+            </VBox>
+        </FlowPane>
+    </TitledPane>
+    <TitledPane text="艦隊">
+        <FlowPane fx:id="fleetList">
+
+        </FlowPane>
+    </TitledPane>
+    <stylesheets>
+        <URL value="@SimpleBattleWidget.css"/>
+    </stylesheets>
+</VBox>
