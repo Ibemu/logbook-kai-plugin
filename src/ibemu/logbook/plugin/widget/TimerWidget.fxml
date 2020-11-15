@@ -8,7 +8,7 @@
 <?import java.net.URL?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ibemu.logbook.plugin.widget.TimerWidgetController">
+      fx:controller="ibemu.logbook.plugin.widget.TimerWidgetController" fx:id="root">
     <TitledPane text="遠征">
         <FlowPane fx:id="missionList">
             <GridPane styleClass="time-pane">

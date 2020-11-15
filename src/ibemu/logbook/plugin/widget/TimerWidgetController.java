@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logbook.bean.*;
@@ -22,6 +23,9 @@ import java.util.Optional;
 
 public class TimerWidgetController extends WindowController
 {
+    @FXML
+    private VBox root;
+
     @FXML
     private FlowPane missionList;
 
@@ -111,6 +115,12 @@ public class TimerWidgetController extends WindowController
                     .skip(1)
                     .map(this::generateMissionTimePane)
                     .forEach(mission::add);
+
+            //
+            this.root.setPrefWidth(this.root.getWidth());
+            this.getWindow().sizeToScene();
+
+            //
             this.portHashCode = newHashCode;
         }
         else
@@ -138,6 +148,12 @@ public class TimerWidgetController extends WindowController
                     .filter(n -> 1 < n.getCompleteTime())
                     .map(this::generateNdockTimePane)
                     .forEach(ndock::add);
+
+            //
+            this.root.setPrefWidth(this.root.getWidth());
+            this.getWindow().sizeToScene();
+
+            //
             this.ndockHashCode = newHashCode;
         }
         else
