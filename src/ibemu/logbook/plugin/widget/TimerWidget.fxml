@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import java.net.URL?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ibemu.logbook.plugin.widget.TimerWidgetController" prefWidth="402" prefHeight="102">
+      fx:controller="ibemu.logbook.plugin.widget.TimerWidgetController">
     <TitledPane text="遠征">
-        <FlowPane fx:id="missionList"/>
+        <FlowPane fx:id="missionList">
+            <GridPane styleClass="time-pane">
+                <Label styleClass="time"/>
+            </GridPane>
+        </FlowPane>
     </TitledPane>
     <TitledPane text="入渠">
-        <FlowPane fx:id="ndockList"/>
+        <FlowPane fx:id="ndockList">
+            <GridPane styleClass="time-pane">
+                <Label styleClass="time"/>
+            </GridPane>
+        </FlowPane>
     </TitledPane>
     <stylesheets>
         <URL value="@TimerWidget.css"/>

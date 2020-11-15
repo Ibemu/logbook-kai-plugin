@@ -1,9 +1,6 @@
 FlowPane {
     -fx-padding: 0;
 }
-.time-dummy {
-    -fx-font-size: 12pt;
-}
 .time-pane .progress {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
