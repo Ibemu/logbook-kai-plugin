@@ -102,7 +102,10 @@
                 <attribute name="Bundle-Version" value="0.0.1-alpha" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
-            <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.widget.TimerWidgetMenuItem" />
+            <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.widget.TimerWidgetMenuItem">
+                <provider classname="ibemu.logbook.plugin.widget.TimerWidgetMenuItem" />
+                <provider classname="ibemu.logbook.plugin.widget.FleetWidgetMenuItem" />
+            </service>
             <fileset dir="./bin">
                 <include name="**/ibemu/logbook/plugin/widget/**"/>
             </fileset>

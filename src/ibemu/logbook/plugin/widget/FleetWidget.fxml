@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ibemu.logbook.plugin.widget.FleetWidgetController" fx:id="widget">
+    <stylesheets>
+        <URL value="@FleetWidget.css"/>
+    </stylesheets>
+</VBox>
