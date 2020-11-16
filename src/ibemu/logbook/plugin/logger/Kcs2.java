@@ -1,9 +1,7 @@
 package ibemu.logbook.plugin.logger;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,7 +55,7 @@ public class Kcs2 implements ContentListenerSpi
             // ファイルパス
             Path path = Paths.get(PluginConfig.get().getKcs2ResponsePath(), fname.toString());
             Files.createDirectories(path.getParent());
-            Files.copy(res.getResponseBody().get(), path);
+            Files.copy(res.getResponseBody().get(), path, StandardCopyOption.REPLACE_EXISTING);
         }
     }
 
