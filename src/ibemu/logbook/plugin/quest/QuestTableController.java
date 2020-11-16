@@ -1,15 +1,5 @@
 package ibemu.logbook.plugin.quest;
 
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -28,162 +18,210 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import logbook.internal.gui.WindowController;
 import logbook.plugin.PluginContainer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class QuestTableController extends WindowController
 {
-    /** 一覧 */
+    /**
+     * 一覧
+     */
+    private final ObservableList<Quest> quests = FXCollections.observableArrayList();
+    /**
+     * 一覧
+     */
     @FXML
     private TableView<Quest> questTable;
-
-    /** ID */
+    /**
+     * ID
+     */
     @FXML
     private TableColumn<Quest, Integer> no;
-
-    /** 状態 */
+    /**
+     * 状態
+     */
     @FXML
     private TableColumn<Quest, Integer> state;
-
-    /** タイトル */
+    /**
+     * タイトル
+     */
     @FXML
     private TableColumn<Quest, String> title;
-
-    /** 内容 */
+    /**
+     * 内容
+     */
     @FXML
     private TableColumn<Quest, String> detail;
-
-    /** 燃料 */
+    /**
+     * 燃料
+     */
     @FXML
     private TableColumn<Quest, List<Integer>> fuel;
-
-    /** 弾薬 */
+    /**
+     * 弾薬
+     */
     @FXML
     private TableColumn<Quest, List<Integer>> ammo;
-
-    /** 鋼材 */
+    /**
+     * 鋼材
+     */
     @FXML
     private TableColumn<Quest, List<Integer>> metal;
-
-    /** ボーキ */
+    /**
+     * ボーキ
+     */
     @FXML
     private TableColumn<Quest, List<Integer>> bauxite;
-
-    /** 期限 */
+    /**
+     * 期限
+     */
     @FXML
     private TableColumn<Quest, Date> due;
-
-    /** 出撃 */
+    /**
+     * 出撃
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> sortie;
-
-    /** 戦闘勝利 */
+    /**
+     * 戦闘勝利
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> battleWin;
-
-    /** 戦闘S */
+    /**
+     * 戦闘S
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> battleWinS;
-
-    /** ボス到達 */
+    /**
+     * ボス到達
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> bossArrive;
-
-    /** ボス勝利 */
+    /**
+     * ボス勝利
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> bossWin;
-
-    /** 1-4S */
+    /**
+     * 1-4S
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss1_4WinS;
-
-    /** 1-5A */
+    /**
+     * 1-5A
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss1_5WinA;
-
-    /** 南西 */
+    /**
+     * 南西
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss2Win;
-
-    /** 3-3+ */
+    /**
+     * 3-3+
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss3_3pWin;
-
-    /** 西方 */
+    /**
+     * 西方
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss4Win;
-
-    /** 4-4 */
+    /**
+     * 4-4
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss4_4Win;
-
-    /** 5-2S */
+    /**
+     * 5-2S
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss5_2WinS;
-
-    /** 6-1S */
+    /**
+     * 6-1S
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> boss6_1WinS;
-
-    /** 補給艦 */
+    /**
+     * 補給艦
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> defeatAP;
-
-    /** 空母 */
+    /**
+     * 空母
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> defeatCV;
-
-    /** 潜水艦 */
+    /**
+     * 潜水艦
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> defeatSS;
-
-    /** 演習 */
+    /**
+     * 演習
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> practice;
-
-    /** 演習勝利 */
+    /**
+     * 演習勝利
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> practiceWin;
-
-    /** 遠征 */
+    /**
+     * 遠征
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> missionSuccess;
-
-    /** 建造 */
+    /**
+     * 建造
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> createShip;
-
-    /** 開発 */
+    /**
+     * 開発
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> createItem;
-
-    /** 解体 */
+    /**
+     * 解体
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> destroyShip;
-
-    /** 廃棄 */
+    /**
+     * 廃棄
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> destroyItem;
-
-    /** 補給 */
+    /**
+     * 補給
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> charge;
-
-    /** 入渠 */
+    /**
+     * 入渠
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> repair;
-
-    /** 改修 */
+    /**
+     * 改修
+     */
     @FXML
     private TableColumn<Quest, Set<Date>> powerUp;
-
-    /** 一覧 */
-    private ObservableList<Quest> quests = FXCollections.observableArrayList();
-
     private Timeline timeline;
 
 
     @FXML
-    void initialize() {
-        try {
+    void initialize()
+    {
+        try
+        {
             // カラムとオブジェクトのバインド
             this.no.setCellValueFactory(new PropertyValueFactory<>("no"));
             this.state.setCellValueFactory(new PropertyValueFactory<>("state"));
@@ -274,12 +312,15 @@ public class QuestTableController extends WindowController
                     this::update));
             this.timeline.play();
 
-        } catch (Exception e) {
+        }
+        catch(Exception e)
+        {
             LoggerHolder.LOG.error("FXMLの初期化に失敗しました", e);
         }
     }
 
-    void update(ActionEvent e) {
+    void update(ActionEvent e)
+    {
         List<Quest> items = QuestCollection.get()
                 .getQuestMap()
                 .values()
@@ -290,7 +331,8 @@ public class QuestTableController extends WindowController
         this.quests.setAll(items);
     }
 
-    void setColmnVisible() {
+    void setColmnVisible()
+    {
         QuestTableConfig conf = QuestTableConfig.get();
         this.no.setVisible(conf.isNo());
 //        this.category.setVisible(conf.isCategory());
@@ -334,7 +376,8 @@ public class QuestTableController extends WindowController
     }
 
     @Override
-    public void setWindow(Stage window) {
+    public void setWindow(Stage window)
+    {
         super.setWindow(window);
         window.setOnCloseRequest(e -> this.timeline.stop());
     }
@@ -345,8 +388,10 @@ public class QuestTableController extends WindowController
      * @param event ActionEvent
      */
     @FXML
-    void selectColumn(ActionEvent event) {
-        try {
+    void selectColumn(ActionEvent event)
+    {
+        try
+        {
             FXMLLoader loader = new FXMLLoader(PluginContainer.getInstance().getClassLoader().getResource("ibemu/logbook/plugin/quest/QuestTableConfig.fxml"));
             loader.setClassLoader(this.getClass().getClassLoader());
             Stage stage = new Stage();
@@ -361,7 +406,7 @@ public class QuestTableController extends WindowController
             stage.showAndWait();
             setColmnVisible();
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             LoggerHolder.LOG.error("設定の初期化に失敗しました", ex);
         }
@@ -370,12 +415,16 @@ public class QuestTableController extends WindowController
     /**
      * 状態を表示するセル
      */
-    private static class StateCell extends TableCell<Quest, Integer> {
+    private static class StateCell extends TableCell<Quest, Integer>
+    {
         @Override
-        protected void updateItem(Integer state, boolean empty) {
+        protected void updateItem(Integer state, boolean empty)
+        {
             super.updateItem(state, empty);
-            if (!empty) {
-                switch(state) {
+            if(!empty)
+            {
+                switch(state)
+                {
                 case 2:
                     this.setText("遂行中");
                     break;
@@ -386,7 +435,9 @@ public class QuestTableController extends WindowController
                     this.setText("");
                     break;
                 }
-            } else {
+            }
+            else
+            {
                 this.setText(null);
             }
         }
@@ -395,15 +446,20 @@ public class QuestTableController extends WindowController
     /**
      * 日付を表示するセル
      */
-    private static class DateCell extends TableCell<Quest, Date> {
+    private static class DateCell extends TableCell<Quest, Date>
+    {
         private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
         @Override
-        protected void updateItem(Date date, boolean empty) {
+        protected void updateItem(Date date, boolean empty)
+        {
             super.updateItem(date, empty);
-            if (!empty && date != null) {
+            if(!empty && date != null)
+            {
                 this.setText(FORMAT.format(date));
-            } else {
+            }
+            else
+            {
                 this.setText(null);
             }
         }
@@ -412,20 +468,26 @@ public class QuestTableController extends WindowController
     /**
      * Materialの項目を表示するセル
      */
-    private static class MaterialCell extends TableCell<Quest, List<Integer>> {
-        private int index;
+    private static class MaterialCell extends TableCell<Quest, List<Integer>>
+    {
+        private final int index;
 
-        public MaterialCell(int i) {
+        public MaterialCell(int i)
+        {
             super();
             this.index = i;
         }
 
         @Override
-        protected void updateItem(List<Integer> list, boolean empty) {
+        protected void updateItem(List<Integer> list, boolean empty)
+        {
             super.updateItem(list, empty);
-            if (!empty) {
+            if(!empty)
+            {
                 this.setText(String.valueOf(list.get(index)));
-            } else {
+            }
+            else
+            {
                 this.setText(null);
             }
         }
@@ -434,20 +496,28 @@ public class QuestTableController extends WindowController
     /**
      * 達成回数を表示するセル
      */
-    private static class SetCountCell extends TableCell<Quest, Set<Date>> {
+    private static class SetCountCell extends TableCell<Quest, Set<Date>>
+    {
         @Override
-        protected void updateItem(Set<Date> set, boolean empty) {
+        protected void updateItem(Set<Date> set, boolean empty)
+        {
             super.updateItem(set, empty);
-            if (!empty && set != null) {
+            if(!empty && set != null)
+            {
                 this.setText(String.valueOf(set.size()));
-            } else {
+            }
+            else
+            {
                 this.setText(null);
             }
         }
     }
 
-    private static class LoggerHolder {
-        /** ロガー */
+    private static class LoggerHolder
+    {
+        /**
+         * ロガー
+         */
         private static final Logger LOG = LogManager.getLogger(QuestTableController.class);
     }
 }

@@ -1,9 +1,5 @@
 package ibemu.logbook.plugin.quest.api;
 
-import java.util.Date;
-
-import javax.json.JsonObject;
-
 import ibemu.logbook.plugin.quest.QuestCollection;
 import logbook.api.API;
 import logbook.api.APIListenerSpi;
@@ -11,6 +7,9 @@ import logbook.internal.Config;
 import logbook.internal.ThreadManager;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;
+
+import javax.json.JsonObject;
+import java.util.Date;
 
 @API("/kcsapi/api_req_practice/battle_result")
 public class ApiReqPracticeBattleResult implements APIListenerSpi
@@ -20,22 +19,25 @@ public class ApiReqPracticeBattleResult implements APIListenerSpi
     public void accept(JsonObject json, RequestMetaData req, ResponseMetaData res)
     {
         JsonObject apidata = json.getJsonObject("api_data");
-        if (apidata != null) {
+        if(apidata != null)
+        {
             String rank = apidata.getString("api_win_rank");
             boolean win = "B".equals(rank) || "A".equals(rank) || "S".equals(rank);
 
             Date now = new Date();
             QuestCollection.get()
-                           .getQuestMap()
-                           .values()
-                           .stream()
-                           .filter(q -> q.getState() == 2)
-                           .forEach(q -> {
-                               q.countPractice(now);
-                               if (win) {
-                                   q.countPracticeWin(now);
-                               }
-                           });
+                    .getQuestMap()
+                    .values()
+                    .stream()
+                    .filter(q -> q.getState() == 2)
+                    .forEach(q ->
+                    {
+                        q.countPractice(now);
+                        if(win)
+                        {
+                            q.countPracticeWin(now);
+                        }
+                    });
             ThreadManager.getExecutorService().execute(Config.getDefault()::store);
         }
     }

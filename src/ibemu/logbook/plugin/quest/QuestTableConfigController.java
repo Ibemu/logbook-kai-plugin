@@ -9,7 +9,9 @@ import logbook.internal.gui.WindowController;
 
 public class QuestTableConfigController extends WindowController
 {
-    /** api_no */
+    /**
+     * api_no
+     */
     @FXML
     private CheckBox no;
 
@@ -21,31 +23,45 @@ public class QuestTableConfigController extends WindowController
 //    @FXML
 //    private CheckBox type;
 
-    /** api_state */
+    /**
+     * api_state
+     */
     @FXML
     private CheckBox state;
 
-    /** api_title */
+    /**
+     * api_title
+     */
     @FXML
     private CheckBox title;
 
-    /** api_detail */
+    /**
+     * api_detail
+     */
     @FXML
     private CheckBox detail;
 
-    /** api_get_material[0] */
+    /**
+     * api_get_material[0]
+     */
     @FXML
     private CheckBox fuel;
 
-    /** api_get_material[1] */
+    /**
+     * api_get_material[1]
+     */
     @FXML
     private CheckBox ammo;
 
-    /** api_get_material[2] */
+    /**
+     * api_get_material[2]
+     */
     @FXML
     private CheckBox metal;
 
-    /** api_get_material[3] */
+    /**
+     * api_get_material[3]
+     */
     @FXML
     private CheckBox bauxite;
 
@@ -57,116 +73,171 @@ public class QuestTableConfigController extends WindowController
 //    @FXML
 //    private CheckBox progressFlag;
 
-    /** 期限 */
+    /**
+     * 期限
+     */
     @FXML
     private CheckBox due;
 
-    /** 出撃 */
+    /**
+     * 出撃
+     */
     @FXML
     private CheckBox sortie;
 
-    /** ボス到達 */
+    /**
+     * ボス到達
+     */
     @FXML
     private CheckBox bossArrive;
 
-    /** ボス勝利 */
+    /**
+     * ボス勝利
+     */
     @FXML
     private CheckBox bossWin;
 
-    /** 1-4ボスS */
+    /**
+     * 1-4ボスS
+     */
     @FXML
     private CheckBox boss1_4WinS;
 
-    /** 1-5ボスA */
+    /**
+     * 1-5ボスA
+     */
     @FXML
     private CheckBox boss1_5WinA;
 
-    /** 南西ボス */
+    /**
+     * 南西ボス
+     */
     @FXML
     private CheckBox boss2Win;
 
-    /** 3-3+ボス */
+    /**
+     * 3-3+ボス
+     */
     @FXML
     private CheckBox boss3_3pWin;
 
-    /** 西方ボス */
+    /**
+     * 西方ボス
+     */
     @FXML
     private CheckBox boss4Win;
 
-    /** 4-4ボス */
+    /**
+     * 4-4ボス
+     */
     @FXML
     private CheckBox boss4_4Win;
 
-    /** 5-2ボスS */
+    /**
+     * 5-2ボスS
+     */
     @FXML
     private CheckBox boss5_2WinS;
 
-    /** 6-1ボスS */
+    /**
+     * 6-1ボスS
+     */
     @FXML
     private CheckBox boss6_1WinS;
 
-    /** 戦闘勝利 */
+    /**
+     * 戦闘勝利
+     */
     @FXML
     private CheckBox battleWin;
 
-    /** 戦闘Sランク */
+    /**
+     * 戦闘Sランク
+     */
     @FXML
     private CheckBox battleWinS;
 
-    /** 補給艦撃破 */
+    /**
+     * 補給艦撃破
+     */
     @FXML
     private CheckBox defeatAP;
 
-    /** 空母撃破 */
+    /**
+     * 空母撃破
+     */
     @FXML
     private CheckBox defeatCV;
 
-    /** 潜水艦撃破 */
+    /**
+     * 潜水艦撃破
+     */
     @FXML
     private CheckBox defeatSS;
 
-    /** 演習 */
+    /**
+     * 演習
+     */
     @FXML
     private CheckBox practice;
 
-    /** 演習勝利 */
+    /**
+     * 演習勝利
+     */
     @FXML
     private CheckBox practiceWin;
 
-    /** 遠征成功 */
+    /**
+     * 遠征成功
+     */
     @FXML
     private CheckBox missionSuccess;
 
-    /** 建造 */
+    /**
+     * 建造
+     */
     @FXML
     private CheckBox createShip;
 
-    /** 開発 */
+    /**
+     * 開発
+     */
     @FXML
     private CheckBox createItem;
 
-    /** 解体 */
+    /**
+     * 解体
+     */
     @FXML
     private CheckBox destroyShip;
 
-    /** 廃棄 */
+    /**
+     * 廃棄
+     */
     @FXML
     private CheckBox destroyItem;
 
-    /** 補給 */
+    /**
+     * 補給
+     */
     @FXML
     private CheckBox charge;
 
-    /** 入渠 */
+    /**
+     * 入渠
+     */
     @FXML
     private CheckBox repair;
 
-    /** 近代化改修 */
+    /**
+     * 近代化改修
+     */
     @FXML
     private CheckBox powerUp;
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         QuestTableConfig conf = QuestTableConfig.get();
 
         this.no.setSelected(conf.isNo());
@@ -216,7 +287,8 @@ public class QuestTableConfigController extends WindowController
      * @param event ActionEvent
      */
     @FXML
-    void cancel(ActionEvent event) {
+    void cancel(ActionEvent event)
+    {
         this.getWindow().close();
     }
 
@@ -226,7 +298,8 @@ public class QuestTableConfigController extends WindowController
      * @param event ActionEvent
      */
     @FXML
-    void ok(ActionEvent event) {
+    void ok(ActionEvent event)
+    {
         QuestTableConfig conf = QuestTableConfig.get();
 
         conf.setNo(this.no.isSelected());

@@ -1,21 +1,6 @@
 package ibemu.logbook.plugin.quest.api;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.function.Predicate;
-
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
-
 import ibemu.logbook.plugin.Utility;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import ibemu.logbook.plugin.quest.Quest;
 import ibemu.logbook.plugin.quest.QuestCollection;
 import ibemu.logbook.plugin.quest.QuestDue;
@@ -25,6 +10,19 @@ import logbook.internal.Config;
 import logbook.internal.ThreadManager;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.Predicate;
 
 @API("/kcsapi/api_get_member/questlist")
 public class ApiGetMemberQuestlist implements APIListenerSpi
@@ -34,11 +32,12 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
     public void accept(JsonObject json, RequestMetaData req, ResponseMetaData res)
     {
         JsonObject apidata = json.getJsonObject("api_data");
-        if (!apidata.isNull("api_list")) {
+        if(!apidata.isNull("api_list"))
+        {
             JsonArray apilist = apidata.getJsonArray("api_list");
             Map<Integer, Quest> questMap = QuestCollection.get().getQuestMap();
             Set<Integer> keys = new HashSet<>();
-            for (JsonValue value : apilist)
+            for(JsonValue value : apilist)
             {
                 if(value instanceof JsonObject)
                 {
@@ -80,7 +79,7 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
                     Map<String, String> m = Utility.getQueryMap(stream);
                     questMap.entrySet().removeIf(new QuestRemover(Integer.parseInt(m.get("api_tab_id")), keys));
                 }
-                catch (IOException e)
+                catch(IOException e)
                 {
                     LoggerHolder.LOG.warn("任務削除に例外が発生しました", e);
                 }
@@ -89,7 +88,15 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
         }
     }
 
-    private class QuestRemover implements Predicate<Entry<Integer, Quest>>
+    private static class LoggerHolder
+    {
+        /**
+         * ロガー
+         */
+        private static final Logger LOG = LogManager.getLogger(ApiReqQuestClearitemget.class);
+    }
+
+    private static class QuestRemover implements Predicate<Entry<Integer, Quest>>
     {
         private final int tab;
         private final Set<Integer> keys;
@@ -122,10 +129,5 @@ public class ApiGetMemberQuestlist implements APIListenerSpi
             }
         }
 
-    }
-
-    private static class LoggerHolder {
-        /** ロガー */
-        private static final Logger LOG = LogManager.getLogger(ApiReqQuestClearitemget.class);
     }
 }

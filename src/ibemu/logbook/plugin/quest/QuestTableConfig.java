@@ -1,8 +1,8 @@
 package ibemu.logbook.plugin.quest;
 
-import java.io.Serializable;
-
 import logbook.internal.Config;
+
+import java.io.Serializable;
 
 public class QuestTableConfig implements Serializable
 {
@@ -12,7 +12,9 @@ public class QuestTableConfig implements Serializable
      */
     private static final long serialVersionUID = -4435908048934406890L;
 
-    /** api_no */
+    /**
+     * api_no
+     */
     private boolean no = true;
 
 //    /** api_category */
@@ -21,25 +23,39 @@ public class QuestTableConfig implements Serializable
 //    /** api_type */
 //    private boolean type = true;
 
-    /** api_state */
+    /**
+     * api_state
+     */
     private boolean state = true;
 
-    /** api_title */
+    /**
+     * api_title
+     */
     private boolean title = true;
 
-    /** api_detail */
+    /**
+     * api_detail
+     */
     private boolean detail = true;
 
-    /** api_get_material[0] */
+    /**
+     * api_get_material[0]
+     */
     private boolean fuel = true;
 
-    /** api_get_material[1] */
+    /**
+     * api_get_material[1]
+     */
     private boolean ammo = true;
 
-    /** api_get_material[2] */
+    /**
+     * api_get_material[2]
+     */
     private boolean metal = true;
 
-    /** api_get_material[3] */
+    /**
+     * api_get_material[3]
+     */
     private boolean bauxite = true;
 
 //    /** api_bonus_flag */
@@ -48,86 +64,154 @@ public class QuestTableConfig implements Serializable
 //    /** api_progress_flag */
 //    private boolean progressFlag = true;
 
-    /** 期限 */
+    /**
+     * 期限
+     */
     private boolean due = true;
 
-    /** 出撃 */
+    /**
+     * 出撃
+     */
     private boolean sortie = true;
 
-    /** ボス到達 */
+    /**
+     * ボス到達
+     */
     private boolean bossArrive = true;
 
-    /** ボス勝利 */
+    /**
+     * ボス勝利
+     */
     private boolean bossWin = true;
 
-    /** 1-4ボスS */
+    /**
+     * 1-4ボスS
+     */
     private boolean boss1_4WinS = true;
 
-    /** 1-5ボスA */
+    /**
+     * 1-5ボスA
+     */
     private boolean boss1_5WinA = true;
 
-    /** 南西ボス */
+    /**
+     * 南西ボス
+     */
     private boolean boss2Win = true;
 
-    /** 3-3+ボス */
+    /**
+     * 3-3+ボス
+     */
     private boolean boss3_3pWin = true;
 
-    /** 西方ボス */
+    /**
+     * 西方ボス
+     */
     private boolean boss4Win = true;
 
-    /** 4-4ボス */
+    /**
+     * 4-4ボス
+     */
     private boolean boss4_4Win = true;
 
-    /** 5-2ボスS */
+    /**
+     * 5-2ボスS
+     */
     private boolean boss5_2WinS = true;
 
-    /** 6-1ボスS */
+    /**
+     * 6-1ボスS
+     */
     private boolean boss6_1WinS = true;
 
-    /** 戦闘勝利 */
+    /**
+     * 戦闘勝利
+     */
     private boolean battleWin = true;
 
-    /** 戦闘Sランク */
+    /**
+     * 戦闘Sランク
+     */
     private boolean battleWinS = true;
 
-    /** 補給艦撃破 */
+    /**
+     * 補給艦撃破
+     */
     private boolean defeatAP = true;
 
-    /** 空母撃破 */
+    /**
+     * 空母撃破
+     */
     private boolean defeatCV = true;
 
-    /** 潜水艦撃破 */
+    /**
+     * 潜水艦撃破
+     */
     private boolean defeatSS = true;
 
-    /** 演習 */
+    /**
+     * 演習
+     */
     private boolean practice = true;
 
-    /** 演習勝利 */
+    /**
+     * 演習勝利
+     */
     private boolean practiceWin = true;
 
-    /** 遠征成功 */
+    /**
+     * 遠征成功
+     */
     private boolean missionSuccess = true;
 
-    /** 建造 */
+    /**
+     * 建造
+     */
     private boolean createShip = true;
 
-    /** 開発 */
+    /**
+     * 開発
+     */
     private boolean createItem = true;
 
-    /** 解体 */
+    /**
+     * 解体
+     */
     private boolean destroyShip = true;
 
-    /** 廃棄 */
+    /**
+     * 廃棄
+     */
     private boolean destroyItem = true;
 
-    /** 補給 */
+    /**
+     * 補給
+     */
     private boolean charge = true;
 
-    /** 入渠 */
+    /**
+     * 入渠
+     */
     private boolean repair = true;
 
-    /** 近代化改修 */
+    /**
+     * 近代化改修
+     */
     private boolean powerUp = true;
+
+    /**
+     * アプリケーションのデフォルト設定ディレクトリからアプリケーション設定を取得します、
+     * これは次の記述と同等です
+     * <blockquote>
+     * <code>Config.getDefault().get(QuestTableConfig.class, QuestTableConfig::new)</code>
+     * </blockquote>
+     *
+     * @return アプリケーションの設定
+     */
+    public static QuestTableConfig get()
+    {
+        return Config.getDefault().get(QuestTableConfig.class, QuestTableConfig::new);
+    }
 
     /**
      * @return no
@@ -137,17 +221,9 @@ public class QuestTableConfig implements Serializable
         return no;
     }
 
-    /**
-     * @param no セットする no
-     */
-    public void setNo(boolean no)
-    {
-        this.no = no;
-    }
-
-    /**
-     * @return category
-     */
+//    /**
+//     * @return category
+//     */
 //    public boolean isCategory()
 //    {
 //        return category;
@@ -176,6 +252,14 @@ public class QuestTableConfig implements Serializable
 //    {
 //        this.type = type;
 //    }
+
+    /**
+     * @param no セットする no
+     */
+    public void setNo(boolean no)
+    {
+        this.no = no;
+    }
 
     /**
      * @return state
@@ -281,14 +365,6 @@ public class QuestTableConfig implements Serializable
         return bauxite;
     }
 
-    /**
-     * @param bauxite セットする bauxite
-     */
-    public void setBauxite(boolean bauxite)
-    {
-        this.bauxite = bauxite;
-    }
-
 //    /**
 //     * @return bonusFlag
 //     */
@@ -320,6 +396,14 @@ public class QuestTableConfig implements Serializable
 //    {
 //        this.progressFlag = progressFlag;
 //    }
+
+    /**
+     * @param bauxite セットする bauxite
+     */
+    public void setBauxite(boolean bauxite)
+    {
+        this.bauxite = bauxite;
+    }
 
     /**
      * @return due
@@ -751,18 +835,5 @@ public class QuestTableConfig implements Serializable
     public void setPowerUp(boolean powerUp)
     {
         this.powerUp = powerUp;
-    }
-
-    /**
-     * アプリケーションのデフォルト設定ディレクトリからアプリケーション設定を取得します、
-     * これは次の記述と同等です
-     * <blockquote>
-     *     <code>Config.getDefault().get(QuestTableConfig.class, QuestTableConfig::new)</code>
-     * </blockquote>
-     *
-     * @return アプリケーションの設定
-     */
-    public static QuestTableConfig get() {
-        return Config.getDefault().get(QuestTableConfig.class, QuestTableConfig::new);
     }
 }
