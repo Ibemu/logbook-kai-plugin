@@ -10,40 +10,57 @@ import logbook.internal.gui.WindowController;
 
 public class PluginConfigController extends WindowController
 {
-    /** /kcsapi/ のリクエストを保存する */
+    /**
+     * /kcsapi/ のリクエストを保存する
+     */
     @FXML
     private CheckBox storeKcsapiRequest;
 
-    /** /kcsapi/ のリクエストを保存する */
+    /**
+     * /kcsapi/ のリクエストを保存する
+     */
     @FXML
     private TextField kcsapiRequestPath;
 
-    /** /kcsapi/ のレスポンスを保存する */
+    /**
+     * /kcsapi/ のレスポンスを保存する
+     */
     @FXML
     private CheckBox storeKcsapiResponse;
 
-    /** /kcsapi/ のレスポンスを保存する */
+    /**
+     * /kcsapi/ のレスポンスを保存する
+     */
     @FXML
     private TextField kcsapiResponsePath;
 
-    /** /kcs2/ のレスポンスを保存する */
+    /**
+     * /kcs2/ のレスポンスを保存する
+     */
     @FXML
     private CheckBox storeKcs2Response;
 
-    /** /kcs2/ のレスポンスを保存する */
+    /**
+     * /kcs2/ のレスポンスを保存する
+     */
     @FXML
     private TextField kcs2ResponsePath;
 
-    /** /kcs2/ のQueryStringをファイル名に反映する */
+    /**
+     * /kcs2/ のQueryStringをファイル名に反映する
+     */
     @FXML
     private CheckBox addKcs2QueryString;
 
-    /** /kcs2/ のQueryStringのapi_tokenを無視する */
+    /**
+     * /kcs2/ のQueryStringのapi_tokenを無視する
+     */
     @FXML
     private CheckBox removeApiToken;
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         PluginConfig conf = PluginConfig.get();
 
         this.storeKcsapiRequest.setSelected(conf.isStoreKcsapiRequest());
@@ -64,7 +81,8 @@ public class PluginConfigController extends WindowController
      * @param event ActionEvent
      */
     @FXML
-    void cancel(ActionEvent event) {
+    void cancel(ActionEvent event)
+    {
         this.getWindow().close();
     }
 
@@ -74,7 +92,8 @@ public class PluginConfigController extends WindowController
      * @param event ActionEvent
      */
     @FXML
-    void ok(ActionEvent event) {
+    void ok(ActionEvent event)
+    {
         PluginConfig conf = PluginConfig.get();
 
         conf.setStoreKcsapiRequest(this.storeKcsapiRequest.isSelected());

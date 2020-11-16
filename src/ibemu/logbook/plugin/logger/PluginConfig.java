@@ -1,8 +1,8 @@
 package ibemu.logbook.plugin.logger;
 
-import java.io.Serializable;
-
 import logbook.internal.Config;
+
+import java.io.Serializable;
 
 public class PluginConfig implements Serializable
 {
@@ -12,29 +12,59 @@ public class PluginConfig implements Serializable
      */
     private static final long serialVersionUID = -6328701211417273922L;
 
-    /** /kcsapi/ のリクエストを保存する */
+    /**
+     * /kcsapi/ のリクエストを保存する
+     */
     private boolean storeKcsapiRequest = false;
 
-    /** /kcsapi/ のリクエストを保存する */
+    /**
+     * /kcsapi/ のリクエストを保存する
+     */
     private String kcsapiRequestPath = "./plugins/logger/kcsapiReq/";
 
-    /** /kcsapi/ のレスポンスを保存する */
+    /**
+     * /kcsapi/ のレスポンスを保存する
+     */
     private boolean storeKcsapiResponse = true;
 
-    /** /kcsapi/ のレスポンスを保存する */
+    /**
+     * /kcsapi/ のレスポンスを保存する
+     */
     private String kcsapiResponsePath = "./plugins/logger/kcsapi/";
 
-    /** /kcs2/ のレスポンスを保存する */
+    /**
+     * /kcs2/ のレスポンスを保存する
+     */
     private boolean storeKcs2Response = true;
 
-    /** /kcs2/ のレスポンスを保存する */
+    /**
+     * /kcs2/ のレスポンスを保存する
+     */
     private String kcs2ResponsePath = "./plugins/logger/kcs2/";
 
-    /** /kcs2/ のQueryStringをファイル名に反映する */
+    /**
+     * /kcs2/ のQueryStringをファイル名に反映する
+     */
     private boolean addKcs2QueryString = true;
 
-    /** /kcs2/ のQueryStringのapi_tokenを無視する */
+    /**
+     * /kcs2/ のQueryStringのapi_tokenを無視する
+     */
     private boolean removeApiToken = true;
+
+    /**
+     * アプリケーションのデフォルト設定ディレクトリからアプリケーション設定を取得します、
+     * これは次の記述と同等です
+     * <blockquote>
+     * <code>Config.getDefault().get(AppConfig.class, AppConfig::new)</code>
+     * </blockquote>
+     *
+     * @return アプリケーションの設定
+     */
+    public static PluginConfig get()
+    {
+        return Config.getDefault().get(PluginConfig.class, PluginConfig::new);
+    }
 
     /**
      * @return storeKcsapiRequest
@@ -162,18 +192,5 @@ public class PluginConfig implements Serializable
     public void setRemoveApiToken(boolean removeApiToken)
     {
         this.removeApiToken = removeApiToken;
-    }
-
-    /**
-     * アプリケーションのデフォルト設定ディレクトリからアプリケーション設定を取得します、
-     * これは次の記述と同等です
-     * <blockquote>
-     *     <code>Config.getDefault().get(AppConfig.class, AppConfig::new)</code>
-     * </blockquote>
-     *
-     * @return アプリケーションの設定
-     */
-    public static PluginConfig get() {
-        return Config.getDefault().get(PluginConfig.class, PluginConfig::new);
     }
 }

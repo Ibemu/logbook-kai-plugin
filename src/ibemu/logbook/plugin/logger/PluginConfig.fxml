@@ -1,60 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="ibemu.logbook.plugin.logger.PluginConfigController">
-   <children>
-      <CheckBox fx:id="storeKcsapiRequest" mnemonicParsing="false" text="/kcsapi/ のリクエスト" />
-      <Label text="パス" />
-      <TextField fx:id="kcsapiRequestPath" />
-      <Separator prefWidth="200.0">
-         <VBox.margin>
-            <Insets bottom="3.0" top="3.0" />
-         </VBox.margin>
-      </Separator>
-      <CheckBox fx:id="storeKcsapiResponse" mnemonicParsing="false" text="/kcsapi/ のレスポンス" />
-      <Label text="パス" />
-      <TextField fx:id="kcsapiResponsePath" />
-      <Separator prefWidth="200.0">
-         <padding>
-            <Insets bottom="3.0" top="3.0" />
-         </padding>
-      </Separator>
-      <CheckBox fx:id="storeKcs2Response" mnemonicParsing="false" text="/kcs2/ のレスポンス" />
-      <Label text="パス" />
-      <TextField fx:id="kcs2ResponsePath" />
-      <CheckBox fx:id="addKcs2QueryString" mnemonicParsing="false" text="QueryStringをファイル名に反映する" />
-      <Separator prefWidth="200.0">
-         <padding>
-            <Insets bottom="3.0" top="3.0" />
-         </padding>
-      </Separator>
-      <CheckBox fx:id="removeApiToken" mnemonicParsing="false" text="QueryStringのapi_tokenを削除する" />
-      <Separator prefWidth="200.0">
-         <padding>
-            <Insets bottom="3.0" top="3.0" />
-         </padding>
-      </Separator>
-      <HBox alignment="TOP_RIGHT">
-         <children>
-            <Button mnemonicParsing="false" onAction="#ok" text="OK">
-               <HBox.margin>
-                  <Insets right="3.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-         </children>
-      </HBox>
-   </children>
-   <padding>
-      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-   </padding>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65"
+      fx:controller="ibemu.logbook.plugin.logger.PluginConfigController">
+    <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+    </padding>
+    <CheckBox fx:id="storeKcsapiRequest" mnemonicParsing="false" text="/kcsapi/ のリクエスト"/>
+    <Label text="パス"/>
+    <TextField fx:id="kcsapiRequestPath"/>
+    <Separator prefWidth="200.0">
+        <VBox.margin>
+            <Insets bottom="3.0" top="3.0"/>
+        </VBox.margin>
+    </Separator>
+    <CheckBox fx:id="storeKcsapiResponse" mnemonicParsing="false" text="/kcsapi/ のレスポンス"/>
+    <Label text="パス"/>
+    <TextField fx:id="kcsapiResponsePath"/>
+    <Separator prefWidth="200.0">
+        <padding>
+            <Insets bottom="3.0" top="3.0"/>
+        </padding>
+    </Separator>
+    <CheckBox fx:id="storeKcs2Response" mnemonicParsing="false" text="/kcs2/ のレスポンス"/>
+    <Label text="パス"/>
+    <TextField fx:id="kcs2ResponsePath"/>
+    <CheckBox fx:id="addKcs2QueryString" mnemonicParsing="false" text="QueryStringをファイル名に反映する"/>
+    <Separator prefWidth="200.0">
+        <padding>
+            <Insets bottom="3.0" top="3.0"/>
+        </padding>
+    </Separator>
+    <CheckBox fx:id="removeApiToken" mnemonicParsing="false" text="QueryStringのapi_tokenを削除する"/>
+    <Separator prefWidth="200.0">
+        <padding>
+            <Insets bottom="3.0" top="3.0"/>
+        </padding>
+    </Separator>
+    <HBox alignment="TOP_RIGHT">
+        <Button mnemonicParsing="false" onAction="#ok" text="OK">
+            <HBox.margin>
+                <Insets right="3.0"/>
+            </HBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#cancel" text="Cancel"/>
+    </HBox>
 </VBox>
