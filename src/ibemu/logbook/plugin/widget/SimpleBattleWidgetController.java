@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import logbook.bean.*;
 import logbook.internal.*;
+import logbook.internal.gui.BattleDetail;
 import logbook.internal.gui.BattleLogDetail;
 import logbook.internal.gui.WindowController;
 import logbook.internal.log.BattleResultLogFormat;
@@ -21,9 +22,12 @@ import logbook.internal.log.LogWriter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class SimpleBattleWidgetController extends WindowController
@@ -100,8 +104,26 @@ public class SimpleBattleWidgetController extends WindowController
         if(this.logHashCode != newHashCode)
         {
             PhaseState ps = new PhaseState(log);
-            Judge judge = new Judge();
-            judge.setBefore(ps);
+            Class<?> judgeClazz = Arrays.stream(BattleDetail.class.getDeclaredClasses()).filter(c -> c.getName().endsWith("Judge")).findAny().orElse(null);
+            Object judge = null;
+
+            if(judgeClazz != null)
+            {
+                try
+                {
+                    Constructor<?> ctor = judgeClazz.getDeclaredConstructor();
+                    ctor.setAccessible(true);
+                    judge = ctor.newInstance();
+
+                    Method setBefore = judgeClazz.getDeclaredMethod("setBefore", PhaseState.class);
+                    setBefore.setAccessible(true);
+                    setBefore.invoke(judge, ps);
+                }
+                catch(Exception ex)
+                {
+                    LoggerHolder.LOG.warn("JudgeClazz Before", ex);
+                }
+            }
 
             // 艦隊
             ObservableList<Node> fleets = this.fleetList.getChildren();
@@ -189,8 +211,28 @@ public class SimpleBattleWidgetController extends WindowController
 
             if(log.getResult() == null)
             {
-                judge.setAfter(ps, log.getBattle());
-                this.rank.setText(String.valueOf(judge.getRank()).charAt(0) + "?");
+                if(judgeClazz != null)
+                {
+                    try
+                    {
+                        Method setAfter = judgeClazz.getDeclaredMethod("setAfter", PhaseState.class, BattleTypes.IFormation.class);
+                        setAfter.setAccessible(true);
+                        setAfter.invoke(judge, ps, log.getBattle());
+
+                        Method getRank = judgeClazz.getDeclaredMethod("getRank");
+                        getRank.setAccessible(true);
+                        this.rank.setText(String.valueOf(getRank.invoke(judge)).charAt(0) + "?");
+                    }
+                    catch(Exception ex)
+                    {
+                        this.rank.setText("?");
+                        LoggerHolder.LOG.warn("JudgeClazz After", ex);
+                    }
+                }
+                else
+                {
+                    this.rank.setText("?");
+                }
             }
             else
             {
@@ -203,136 +245,6 @@ public class SimpleBattleWidgetController extends WindowController
 
             //
             this.logHashCode = newHashCode;
-        }
-    }
-
-    /**
-     * 勝敗判定
-     */
-    private static class Judge {
-
-        private double beforeFriendTotalHp;
-
-        private int beforeFriendAliveCount;
-
-        private double beforeEnemyTotalHp;
-
-        private int beforeEnemyAliveCount;
-
-        private double afterFriendTotalHp;
-
-        private int afterFriendAliveCount;
-
-        private double afterEnemyTotalHp;
-
-        private int afterEnemyAliveCount;
-
-        /** 味方損害率 */
-        private double friendDamageRatio;
-
-        /** 敵損害率 */
-        private double enemyDamageRatio;
-
-        /** 勝敗 */
-        private Rank rank;
-
-        public Rank getRank()
-        {
-            return this.rank;
-        }
-
-        /**
-         * 戦闘前の状態を設定します。
-         * @param ps フェイズ
-         */
-        public void setBefore(PhaseState ps) {
-            this.beforeFriendTotalHp = ps.friendTotalHp();
-            this.beforeFriendAliveCount = ps.friendAliveCount();
-            this.beforeEnemyTotalHp = ps.enemyTotalHp();
-            this.beforeEnemyAliveCount = ps.enemydAliveCount();
-        }
-
-        /**
-         * 戦闘後の状態を設定します。
-         * @param ps フェイズ
-         */
-        public void setAfter(PhaseState ps, BattleTypes.IFormation battle) {
-            this.afterFriendTotalHp = ps.friendTotalHp();
-            this.afterFriendAliveCount = ps.friendAliveCount();
-            this.afterEnemyTotalHp = ps.enemyTotalHp();
-            this.afterEnemyAliveCount = ps.enemydAliveCount();
-            this.friendDamageRatio = this.damageRatio(this.beforeFriendTotalHp, this.afterFriendTotalHp);
-            this.enemyDamageRatio = this.damageRatio(this.beforeEnemyTotalHp, this.afterEnemyTotalHp);
-            this.rank = this.judge(ps, battle);
-        }
-
-        /**
-         * 勝敗判定
-         * @param ps フェイズ
-         * @param battle 戦闘
-         * @return ランク
-         */
-        private Rank judge(PhaseState ps, BattleTypes.IFormation battle) {
-            if (battle.isILdAirbattle() || battle.isILdShooting()) {
-                if (this.friendDamageRatio <= 0) {
-                    return Rank.S完全勝利;
-                }
-                if (this.friendDamageRatio < 10) {
-                    return Rank.A勝利;
-                }
-                if (this.friendDamageRatio < 20) {
-                    return Rank.B戦術的勝利;
-                }
-                if (this.friendDamageRatio < 50) {
-                    return Rank.C戦術的敗北;
-                }
-                if (this.friendDamageRatio < 80) {
-                    return Rank.D敗北;
-                }
-                return Rank.E敗北;
-            } else {
-                if (this.beforeFriendAliveCount == this.afterFriendAliveCount) {
-                    if (this.afterEnemyAliveCount == 0) {
-                        if (this.afterFriendTotalHp >= this.beforeFriendTotalHp) {
-                            return Rank.S完全勝利;
-                        } else {
-                            return Rank.S勝利;
-                        }
-                    } else if (this.beforeEnemyAliveCount > 1
-                            && (this.beforeEnemyAliveCount
-                            - this.afterEnemyAliveCount) >= (int) (this.beforeEnemyAliveCount * 0.7D)) {
-                        return Rank.A勝利;
-                    }
-                }
-                if (Ships.isLost(ps.getAfterEnemy().get(0))
-                        && (this.beforeFriendAliveCount - this.afterFriendAliveCount) < (this.beforeEnemyAliveCount
-                        - this.afterEnemyAliveCount)) {
-                    return Rank.B戦術的勝利;
-                }
-                if (this.beforeFriendAliveCount == 1 && Ships.isBadlyDamage(ps.getAfterFriend().get(0))) {
-                    return Rank.D敗北;
-                }
-                if (Math.floor(this.enemyDamageRatio) > 2.5 * Math.floor(this.friendDamageRatio)) {
-                    return Rank.B戦術的勝利;
-                }
-                if (Math.floor(this.enemyDamageRatio) > 0.9 * Math.floor(this.friendDamageRatio)) {
-                    return Rank.C戦術的敗北;
-                }
-                if (this.beforeFriendAliveCount > this.afterFriendAliveCount && this.afterFriendAliveCount == 1) {
-                    return Rank.E敗北;
-                }
-                return Rank.D敗北;
-            }
-        }
-
-        /**
-         * 損害率を計算する
-         * @param before 前HP
-         * @param after 後HP
-         * @return 損害率
-         */
-        private double damageRatio(double before, double after) {
-            return (before - after) / before * 100;
         }
     }
 
