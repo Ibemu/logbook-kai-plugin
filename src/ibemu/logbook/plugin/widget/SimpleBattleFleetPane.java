@@ -1,29 +1,20 @@
 package ibemu.logbook.plugin.widget;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import logbook.bean.BattleLog;
 import logbook.bean.Chara;
-import logbook.bean.Enemy;
 import logbook.bean.Ship;
-import logbook.internal.PhaseState;
 import logbook.internal.Ships;
 import logbook.internal.gui.InternalFXMLLoader;
-import logbook.internal.gui.ShipTablePane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class SimpleBattleFleetPane extends GridPane
@@ -45,28 +36,6 @@ public class SimpleBattleFleetPane extends GridPane
 
     @FXML
     private VBox maxHp;
-
-    private String getStyle(Ship chara)
-    {
-        if(Ships.isEscape(chara))
-            return "escape";
-        return getStyle((Chara) chara);
-    }
-
-    private String getStyle(Chara chara)
-    {
-        if(Ships.isLessThanSlightDamage(chara))
-            return "normal";
-        if(Ships.isSlightDamage(chara))
-            return "slight-damage";
-        if(Ships.isHalfDamage(chara))
-            return "half-damage";
-        if(Ships.isBadlyDamage(chara))
-            return "badly-damage";
-        if(Ships.isLost(chara))
-            return "lost";
-        return "lost";
-    }
 
     public SimpleBattleFleetPane(Stream<Chara> before)
     {
@@ -101,6 +70,28 @@ public class SimpleBattleFleetPane extends GridPane
         {
             LoggerHolder.LOG.error("FXMLのロードに失敗しました", e);
         }
+    }
+
+    private String getStyle(Ship chara)
+    {
+        if(Ships.isEscape(chara))
+            return "escape";
+        return getStyle((Chara) chara);
+    }
+
+    private String getStyle(Chara chara)
+    {
+        if(Ships.isLessThanSlightDamage(chara))
+            return "normal";
+        if(Ships.isSlightDamage(chara))
+            return "slight-damage";
+        if(Ships.isHalfDamage(chara))
+            return "half-damage";
+        if(Ships.isBadlyDamage(chara))
+            return "badly-damage";
+        if(Ships.isLost(chara))
+            return "lost";
+        return "lost";
     }
 
     public void applyAfterHp(Stream<Chara> after)

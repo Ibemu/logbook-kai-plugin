@@ -3,8 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.GridPane?>
-
-<fx:root xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
          type="GridPane" styleClass="time-pane">
     <ProgressBar fx:id="progress" styleClass="progress" prefWidth="100.0" maxHeight="Infinity"/>
     <Label fx:id="time" styleClass="time"/>

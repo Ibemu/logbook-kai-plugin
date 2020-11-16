@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
-import javafx.util.Pair;
 import logbook.internal.Time;
 import logbook.internal.gui.InternalFXMLLoader;
 import logbook.internal.gui.PopOver;
@@ -20,7 +19,6 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.function.Supplier;
 
 public class TimePane extends GridPane
 {
