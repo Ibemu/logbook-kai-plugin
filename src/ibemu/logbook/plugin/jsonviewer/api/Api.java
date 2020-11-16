@@ -1,17 +1,15 @@
 package ibemu.logbook.plugin.jsonviewer.api;
 
-import java.io.IOException;
-
-import javax.json.JsonObject;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import ibemu.logbook.plugin.jsonviewer.ApiData;
 import javafx.collections.ObservableList;
 import logbook.api.APIListenerSpi;
 import logbook.proxy.RequestMetaData;
 import logbook.proxy.ResponseMetaData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import javax.json.JsonObject;
+import java.io.IOException;
 
 public class Api implements APIListenerSpi
 {
@@ -26,14 +24,17 @@ public class Api implements APIListenerSpi
             list.add(0, new ApiData(json, req, res));
             if(list.size() > MAX_APIDATA) list.remove(MAX_APIDATA, list.size());
         }
-        catch (IOException e)
+        catch(IOException e)
         {
             LoggerHolder.LOG.warn("JsonViewer処理中に例外が発生しました", e);
         }
     }
 
-    private static class LoggerHolder {
-        /** ロガー */
+    private static class LoggerHolder
+    {
+        /**
+         * ロガー
+         */
         private static final Logger LOG = LogManager.getLogger(Api.class);
     }
 }

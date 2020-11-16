@@ -6,42 +6,51 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.util.Duration;
 import logbook.internal.gui.WindowController;
 
 public class JsonViewerController extends WindowController
 {
-    /** 履歴 */
+    /**
+     * 履歴
+     */
     @FXML
     private ListView<ApiData> history;
 
-    /** 自動更新 */
+    /**
+     * 自動更新
+     */
     @FXML
     private CheckBox auto;
 
-    /** タイムスタンプ */
+    /**
+     * タイムスタンプ
+     */
     @FXML
     private TextField timestamp;
 
-    /** APIのURI */
+    /**
+     * APIのURI
+     */
     @FXML
     private TextField uri;
 
-    /** APIのリクエスト */
+    /**
+     * APIのリクエスト
+     */
     @FXML
     private TextArea request;
 
-    /** APIのレスポンス */
+    /**
+     * APIのレスポンス
+     */
     @FXML
     private TextArea response;
 
-    /** APIのレスポンス */
+    /**
+     * APIのレスポンス
+     */
     @FXML
     private TreeView<NamedJsonValue> jsonTree;
 

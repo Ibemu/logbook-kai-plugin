@@ -1,9 +1,9 @@
 package ibemu.logbook.plugin.jsonviewer;
 
+import javafx.util.Pair;
+
 import javax.json.JsonValue;
 import javax.json.JsonValue.ValueType;
-
-import javafx.util.Pair;
 
 public class NamedJsonValue extends Pair<String, JsonValue>
 {
