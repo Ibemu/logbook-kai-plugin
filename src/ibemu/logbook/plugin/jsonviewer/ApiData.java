@@ -105,7 +105,8 @@ public class ApiData
             catch(IOException e)
             {
                 resp = "エラー: " + e.getMessage();
-                LoggerHolder.LOG.warn("JsonViewer処理中に例外が発生しました", e);
+                // ログには残さない
+                // LoggerHolder.LOG.warn("JsonViewer処理中に例外が発生しました", e);
             }
             this.response = resp;
         }
