@@ -9,6 +9,9 @@ Label {
 .header {
     -fx-font-weight: bold;
 }
+#name Label {
+    -fx-alignment: center-left;
+}
 #beforeHp Label,
 #afterHp Label,
 #maxHp Label {
