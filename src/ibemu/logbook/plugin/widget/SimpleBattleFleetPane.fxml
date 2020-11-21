@@ -4,12 +4,14 @@
 <?import javafx.scene.layout.*?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="GridPane"
          xmlns="http://javafx.com/javafx/8.0.171">
-    <Label text="名前" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="header"/>
-    <VBox fx:id="name" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <Label text="耐久" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="5" styleClass="header"/>
-    <VBox fx:id="beforeHp" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-    <VBox fx:id="arrowHp" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-    <VBox fx:id="afterHp" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-    <VBox fx:id="slashHp" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-    <VBox fx:id="maxHp" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+    <Label fx:id="fleetName" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="6" styleClass="fleet-name"/>
+    <Label fx:id="formation" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="6" styleClass="formation"/>
+    <Label text="名前" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="header"/>
+    <VBox fx:id="name" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label text="耐久" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="5" styleClass="header"/>
+    <VBox fx:id="beforeHp" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+    <VBox fx:id="arrowHp" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+    <VBox fx:id="afterHp" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+    <VBox fx:id="slashHp" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+    <VBox fx:id="maxHp" GridPane.columnIndex="6" GridPane.rowIndex="3"/>
 </fx:root>

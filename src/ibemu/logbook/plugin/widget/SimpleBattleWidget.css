@@ -3,14 +3,19 @@ FlowPane {
 }
 Label {
     -fx-max-width: infinity;
-    -fx-alignment: center;
     -fx-padding: 2px;
 }
-.header {
+#info Label {
+    -fx-alignment: center;
+}
+.fleet-name {
     -fx-font-weight: bold;
 }
-#name Label {
-    -fx-alignment: center-left;
+.formation {
+}
+.header {
+    -fx-alignment: center;
+    -fx-font-weight: bold;
 }
 #beforeHp Label,
 #afterHp Label,

@@ -54,6 +54,7 @@ public class SimpleBattleFleetPane extends GridPane
 
             before.forEach(chara ->
             {
+                if(chara == null) return;
                 nameList.add(new Label(Ships.toName(chara)));
                 Label l = new Label(chara.getNowhp().toString());
                 if(chara instanceof Ship)
@@ -99,6 +100,7 @@ public class SimpleBattleFleetPane extends GridPane
         ObservableList<Node> afterHpList = this.afterHp.getChildren();
         after.forEach(chara ->
         {
+            if(chara == null) return;
             Label l = new Label(chara.getNowhp().toString());
             if(chara instanceof Ship)
                 l.getStyleClass().add(getStyle((Ship) chara));
