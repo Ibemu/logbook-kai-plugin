@@ -34,7 +34,6 @@ public class FleetWidgetMenuItem implements MainCommandMenu
             {
                 try
                 {
-                    update(null);
                     this.timeline = new Timeline();
                     this.timeline.setCycleCount(Timeline.INDEFINITE);
                     this.timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), this::update));
@@ -91,6 +90,21 @@ public class FleetWidgetMenuItem implements MainCommandMenu
                             .forEach(this.getItems()::add);
                     this.portHashCode = newHashCode;
                 }
+            }
+
+            @Override
+            public void show()
+            {
+                update(null);
+                this.timeline.play();
+                super.show();
+            }
+
+            @Override
+            public void hide()
+            {
+                super.hide();
+                this.timeline.stop();
             }
         };
         content.setText("艦隊タブウィンドウ");

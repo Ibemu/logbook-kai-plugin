@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logbook.internal.gui.WindowController;
 
@@ -112,6 +113,15 @@ public class JsonViewerController extends WindowController
         {
             last = list.get(0);
             history.getSelectionModel().selectFirst();
+        }
+    }
+
+    @Override
+    protected void onWindowHidden(WindowEvent e)
+    {
+        if(this.timeline != null)
+        {
+            this.timeline.stop();
         }
     }
 }

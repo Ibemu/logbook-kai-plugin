@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logbook.bean.DeckPort;
 import logbook.bean.DeckPortCollection;
@@ -68,6 +69,15 @@ public class FleetWidgetController extends WindowController
     {
         this.index = index;
         update(null);
+    }
+
+    @Override
+    protected void onWindowHidden(WindowEvent e)
+    {
+        if(this.timeline != null)
+        {
+            this.timeline.stop();
+        }
     }
 
     private static class LoggerHolder

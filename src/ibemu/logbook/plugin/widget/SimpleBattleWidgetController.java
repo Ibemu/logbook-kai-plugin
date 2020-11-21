@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logbook.bean.*;
 import logbook.internal.BattleLogs;
@@ -30,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class SimpleBattleWidgetController extends WindowController
@@ -101,8 +103,8 @@ public class SimpleBattleWidgetController extends WindowController
                 }
             }
         }
-        if(log == null || log.getBattle() == null) return;
-        long newHashCode = log.hashCode();
+        if(log == null || (log.getBattle() == null && log.getMidnight() == null)) return;
+        long newHashCode = Objects.hash(log.getRoute(), log.getBattle(), log.getMidnight(), log.getResult());
         if(this.logHashCode != newHashCode)
         {
             PhaseState ps = new PhaseState(log);
@@ -123,7 +125,7 @@ public class SimpleBattleWidgetController extends WindowController
                 }
                 catch(Exception ex)
                 {
-                    LoggerHolder.LOG.warn("JudgeClazz Before", ex);
+                    LoggerHolder.LOG.warn("戦闘情報の更新に失敗しました", ex);
                 }
             }
 
@@ -210,7 +212,6 @@ public class SimpleBattleWidgetController extends WindowController
                 this.day.setText(log.getMidnight().isINightToDayBattle() ? "夜昼" : "夜戦");
             }
 
-
             if(log.getResult() == null)
             {
                 if(judgeClazz != null)
@@ -228,7 +229,7 @@ public class SimpleBattleWidgetController extends WindowController
                     catch(Exception ex)
                     {
                         this.rank.setText("?");
-                        LoggerHolder.LOG.warn("JudgeClazz After", ex);
+                        LoggerHolder.LOG.warn("戦闘情報の更新に失敗しました", ex);
                     }
                 }
                 else
@@ -242,11 +243,23 @@ public class SimpleBattleWidgetController extends WindowController
             }
 
             //
-            this.root.setPrefWidth(this.root.getWidth());
-            this.getWindow().sizeToScene();
+            if(this.getWindow() != null)
+            {
+                this.root.setPrefWidth(this.root.getWidth());
+                this.getWindow().sizeToScene();
+            }
 
             //
             this.logHashCode = newHashCode;
+        }
+    }
+
+    @Override
+    protected void onWindowHidden(WindowEvent e)
+    {
+        if(this.timeline != null)
+        {
+            this.timeline.stop();
         }
     }
 

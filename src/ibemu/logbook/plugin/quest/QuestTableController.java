@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logbook.internal.gui.WindowController;
 import logbook.plugin.PluginContainer;
@@ -291,7 +292,7 @@ public class QuestTableController extends WindowController
             this.repair.setCellFactory(p -> new SetCountCell());
             this.powerUp.setCellValueFactory(new PropertyValueFactory<>("powerUp"));
             this.powerUp.setCellFactory(p -> new SetCountCell());
-            setColmnVisible();
+            setColumnVisible();
 
             this.questTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             // 行を作る
@@ -331,7 +332,7 @@ public class QuestTableController extends WindowController
         this.quests.setAll(items);
     }
 
-    void setColmnVisible()
+    void setColumnVisible()
     {
         QuestTableConfig conf = QuestTableConfig.get();
         this.no.setVisible(conf.isNo());
@@ -404,7 +405,7 @@ public class QuestTableController extends WindowController
             stage.initOwner(this.getWindow());
             stage.setTitle("列の表示");
             stage.showAndWait();
-            setColmnVisible();
+            setColumnVisible();
         }
         catch(Exception ex)
         {
@@ -510,6 +511,15 @@ public class QuestTableController extends WindowController
             {
                 this.setText(null);
             }
+        }
+    }
+
+    @Override
+    protected void onWindowHidden(WindowEvent e)
+    {
+        if(this.timeline != null)
+        {
+            this.timeline.stop();
         }
     }
 

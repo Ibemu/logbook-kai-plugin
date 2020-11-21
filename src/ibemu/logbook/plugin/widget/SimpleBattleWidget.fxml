@@ -6,7 +6,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
       fx:controller="ibemu.logbook.plugin.widget.SimpleBattleWidgetController" fx:id="root" prefWidth="600">
     <TitledPane text="情報">
-        <FlowPane>
+        <FlowPane id="info">
             <VBox>
                 <Label text="マップ" styleClass="header"/>
                 <Label fx:id="map"/>

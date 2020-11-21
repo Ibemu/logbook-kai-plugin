@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import logbook.bean.*;
 import logbook.internal.Ships;
@@ -115,8 +116,11 @@ public class TimerWidgetController extends WindowController
                     .forEach(mission::add);
 
             //
-            this.root.setPrefWidth(this.root.getWidth());
-            this.getWindow().sizeToScene();
+            if(this.getWindow() != null)
+            {
+                this.root.setPrefWidth(this.root.getWidth());
+                this.getWindow().sizeToScene();
+            }
 
             //
             this.portHashCode = newHashCode;
@@ -148,8 +152,11 @@ public class TimerWidgetController extends WindowController
                     .forEach(ndock::add);
 
             //
-            this.root.setPrefWidth(this.root.getWidth());
-            this.getWindow().sizeToScene();
+            if(this.getWindow() != null)
+            {
+                this.root.setPrefWidth(this.root.getWidth());
+                this.getWindow().sizeToScene();
+            }
 
             //
             this.ndockHashCode = newHashCode;
@@ -167,10 +174,12 @@ public class TimerWidgetController extends WindowController
     }
 
     @Override
-    public void setWindow(Stage window)
+    protected void onWindowHidden(WindowEvent e)
     {
-        super.setWindow(window);
-        window.setOnCloseRequest(e -> this.timeline.stop());
+        if(this.timeline != null)
+        {
+            this.timeline.stop();
+        }
     }
 
     private static class LoggerHolder
