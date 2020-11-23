@@ -20,6 +20,12 @@ import java.util.stream.Stream;
 public class SimpleBattleFleetPane extends GridPane
 {
     @FXML
+    private Label fleetName;
+
+    @FXML
+    private Label formation;
+
+    @FXML
     private VBox name;
 
     @FXML
@@ -37,7 +43,7 @@ public class SimpleBattleFleetPane extends GridPane
     @FXML
     private VBox maxHp;
 
-    public SimpleBattleFleetPane(Stream<Chara> before)
+    public SimpleBattleFleetPane(String fleetName, String formation, Stream<Chara> before)
     {
         try
         {
@@ -45,6 +51,9 @@ public class SimpleBattleFleetPane extends GridPane
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
+
+            this.fleetName.setText(fleetName);
+            this.formation.setText(formation);
 
             ObservableList<Node> nameList = this.name.getChildren();
             ObservableList<Node> beforeHpList = this.beforeHp.getChildren();

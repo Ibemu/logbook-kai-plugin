@@ -9,9 +9,11 @@ Label {
     -fx-alignment: center;
 }
 .fleet-name {
+    -fx-alignment: center;
     -fx-font-weight: bold;
 }
 .formation {
+    -fx-alignment: center;
 }
 .header {
     -fx-alignment: center;
