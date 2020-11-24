@@ -53,6 +53,12 @@ public class SimpleBattleWidgetController extends WindowController
     private Label day;
 
     @FXML
+    private Label intercept;
+
+    @FXML
+    private Label dispSeiku;
+
+    @FXML
     private Label rank;
 
     @FXML
@@ -89,7 +95,7 @@ public class SimpleBattleWidgetController extends WindowController
         this.nextUpdate = ZonedDateTime.now().plusNanos(500_000_000);
 
         BattleLog log = AppCondition.get().getBattleResult();
-        if(log == null || log.getBattle() == null)
+        if(log == null)
         {
             // 最後のログ
             Path dir = Paths.get(AppConfig.get().getReportPath());
@@ -108,11 +114,11 @@ public class SimpleBattleWidgetController extends WindowController
                 }
                 catch(Exception ex)
                 {
-                    log = null;
+                    return;
                 }
             }
         }
-        if(log == null || log.getBattle() == null) return;
+        if(log == null) return;
         boolean updated = updateBattle(log);
         if(!updated)
         {
@@ -128,7 +134,8 @@ public class SimpleBattleWidgetController extends WindowController
 
     private boolean updateBattle(BattleLog log)
     {
-        long newHashCode = Objects.hash(log.getRoute(), log.getBattle(), log.getMidnight(), log.getResult());
+        if(log.getBattle() == null) return false;
+        long newHashCode = Objects.hash(log.getBattle(), log.getMidnight(), log.getResult());
         if(this.logHashCode == newHashCode) return false;
         PhaseState ps = new PhaseState(log);
         Class<?> judgeClazz = Arrays.stream(BattleDetail.class.getDeclaredClasses()).filter(c -> c.getName().endsWith("Judge")).findAny().orElse(null);
@@ -155,7 +162,6 @@ public class SimpleBattleWidgetController extends WindowController
         // 陣形
         String fFormation = BattleTypes.Formation.toFormation(log.getBattle().getFormation().get(0)).toString();
         String eFormation = BattleTypes.Formation.toFormation(log.getBattle().getFormation().get(1)).toString();
-        String intercept = BattleTypes.Intercept.toIntercept(log.getBattle().getFormation().get(2)).toString();
         String combineType = log.getCombinedType().toString();
 
         // 艦隊
@@ -168,40 +174,51 @@ public class SimpleBattleWidgetController extends WindowController
         Separator sep = new Separator();
         sep.setOrientation(Orientation.VERTICAL);
 
+        // - 味方1
         if(!ps.getAfterFriend().isEmpty())
         {
             f1 = new SimpleBattleFleetPane("自艦隊", fFormation, ps.getAfterFriend().stream().map(c -> c));
         }
+        // - 味方2
         if(!ps.getAfterFriendCombined().isEmpty())
         {
             f2 = new SimpleBattleFleetPane("第二艦隊", combineType, ps.getAfterFriendCombined().stream().map(c -> c));
         }
+        // - 敵2
         if(!ps.getAfterEnemyCombined().isEmpty())
         {
             e2 = new SimpleBattleFleetPane("敵随伴艦隊", "", ps.getAfterEnemyCombined().stream().map(c -> c));
         }
+        // - 敵1
         if(!ps.getAfterEnemy().isEmpty())
         {
             e1 = new SimpleBattleFleetPane("敵艦隊", eFormation, ps.getAfterEnemy().stream().map(c -> c));
         }
+
+        // 戦闘後艦隊
         ps.apply(log.getBattle());
         ps.apply(log.getMidnight());
+
+        // - 味方1
         if(!ps.getAfterFriend().isEmpty() && f1 != null)
         {
             f1.applyAfterHp(ps.getAfterFriend().stream().map(c -> c));
             fleets.add(f1);
         }
+        // - 味方2
         if(!ps.getAfterFriendCombined().isEmpty() && f2 != null)
         {
             f2.applyAfterHp(ps.getAfterFriendCombined().stream().map(c -> c));
             fleets.add(f2);
         }
         fleets.add(sep);
+        // - 敵2
         if(!ps.getAfterEnemyCombined().isEmpty() && e2 != null)
         {
             e2.applyAfterHp(ps.getAfterEnemyCombined().stream().map(c -> c));
             fleets.add(e2);
         }
+        // - 敵1
         if(!ps.getAfterEnemy().isEmpty() && e1 != null)
         {
             e1.applyAfterHp(ps.getAfterEnemy().stream().map(c -> c));
@@ -209,9 +226,11 @@ public class SimpleBattleWidgetController extends WindowController
         }
 
         // 情報
+        // - マップ
+        // - ボス
         MapStartNext last = log.getNext().size() > 0 ? log.getNext().get(log.getNext().size() - 1) : null;
         updateCell(last, true);
-
+        // - 戦闘数
         if(log.getBattleCount() == null)
         {
             this.count.setText("");
@@ -220,7 +239,7 @@ public class SimpleBattleWidgetController extends WindowController
         {
             this.count.setText(String.format("%d戦%s", log.getBattleCount(), log.getResult() == null ? "目" : "終了"));
         }
-
+        // - 昼夜
         if(log.getMidnight() == null)
         {
             this.day.setText(log.getBattle().isINightToDayBattle() ? "夜昼" : "昼戦");
@@ -229,7 +248,19 @@ public class SimpleBattleWidgetController extends WindowController
         {
             this.day.setText(log.getMidnight().isINightToDayBattle() ? "夜昼" : "夜戦");
         }
-
+        // - 対峙
+        this.intercept.setText(BattleTypes.Intercept.toIntercept(log.getBattle().getFormation().get(2)).toString());
+        // - 制空
+        this.dispSeiku.setText("");
+        if (log.getBattle().isIKouku())
+        {
+            BattleTypes.Kouku kouku = log.getBattle().asIKouku().getKouku();
+            if(kouku != null && kouku.getStage1() != null)
+            {
+                this.dispSeiku.setText(BattleTypes.DispSeiku.toDispSeiku(kouku.getStage1().getDispSeiku()).toString());
+            }
+        }
+        // - ランク
         if(log.getResult() == null)
         {
             if(judgeClazz != null)
@@ -260,6 +291,7 @@ public class SimpleBattleWidgetController extends WindowController
             this.rank.setText(log.getResult().getWinRank());
         }
 
+        //
         this.logHashCode = newHashCode;
         return true;
     }

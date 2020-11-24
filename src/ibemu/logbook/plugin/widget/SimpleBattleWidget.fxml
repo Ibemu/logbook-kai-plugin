@@ -24,6 +24,14 @@
                 <Label fx:id="day"/>
             </VBox>
             <VBox>
+                <Label text="艦隊行動" styleClass="header"/>
+                <Label fx:id="intercept"/>
+            </VBox>
+            <VBox>
+                <Label text="制空" styleClass="header"/>
+                <Label fx:id="dispSeiku"/>
+            </VBox>
+            <VBox>
                 <Label text="ランク" styleClass="header"/>
                 <Label fx:id="rank"/>
             </VBox>
