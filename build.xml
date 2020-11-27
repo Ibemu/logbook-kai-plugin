@@ -15,7 +15,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Logger" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="0.1.0-beta" />
+                <attribute name="Bundle-Version" value="1.0.0" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.proxy.ContentListenerSpi" provider="ibemu.logbook.plugin.logger.Kcs2" />
@@ -32,7 +32,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Quest" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="1.0.2" />
+                <attribute name="Bundle-Version" value="1.1.0" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.api.APIListenerSpi">
@@ -63,7 +63,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="New Ship" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="1.0.0" />
+                <attribute name="Bundle-Version" value="1.0.1" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.api.APIListenerSpi">
@@ -80,7 +80,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Json Viewer" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="0.2.0-beta" />
+                <attribute name="Bundle-Version" value="1.0.0" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.api.APIListenerSpi">
@@ -99,7 +99,7 @@
             <manifest>
                 <attribute name="Bundle-Name" value="Widget" />
                 <attribute name="Bundle-Vendor" value="Ibemu" />
-                <attribute name="Bundle-Version" value="0.0.1-alpha" />
+                <attribute name="Bundle-Version" value="0.1.0-beta" />
                 <attribute name="Bundle-License" value="MIT License" />
             </manifest>
             <service type="logbook.plugin.gui.MainCommandMenu" provider="ibemu.logbook.plugin.widget.TimerWidgetMenuItem">
