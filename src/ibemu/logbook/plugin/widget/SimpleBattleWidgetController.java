@@ -67,7 +67,7 @@ public class SimpleBattleWidgetController extends WindowController
     private Timeline timeline;
 
     private long logHashCode;
-    private long cellHashCode;
+    private String currentCell;
 
     private ZonedDateTime nextUpdate;
 
@@ -306,13 +306,14 @@ public class SimpleBattleWidgetController extends WindowController
         }
         else
         {
-            long newHashCode = cell.hashCode();
-            if(this.cellHashCode == newHashCode) return false;
+            String newCell = cell.getMapareaId() + "-" + cell.getMapinfoNo()
+                    + "-" + Mapping.getCell(cell.getMapareaId(), cell.getMapinfoNo(), cell.getNo());
+            if(newCell.equals(this.currentCell) && !battling) return false;
+            this.map.setText(newCell);
+
             boolean boss = cell.getNo().equals(cell.getBosscellNo()) || cell.getEventId() == 5;
-            this.map.setText(cell.getMapareaId() + "-" + cell.getMapinfoNo()
-                    + "-" + Mapping.getCell(cell.getMapareaId(), cell.getMapinfoNo(), cell.getNo()));
             this.boss.setText(boss ? (battling ? "○" : "次") : "✕");
-            this.cellHashCode = newHashCode;
+            this.currentCell = newCell;
             return true;
         }
     }
